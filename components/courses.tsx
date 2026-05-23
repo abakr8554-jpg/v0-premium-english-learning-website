@@ -4,41 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { GraduationCap, Briefcase, Gamepad2, BookOpen, ArrowRight } from "lucide-react"
-
-const courses = [
-  {
-    icon: GraduationCap,
-    title: "IELTS Masterclass",
-    subtitle: "Band 7.5+ Prep",
-    description: "Intensive preparation with mock exams, detailed feedback, and proven strategies for achieving your target band score.",
-    features: ["Full Mock Exams", "Writing Reviews", "Speaking Practice", "Band Prediction"],
-    popular: true,
-  },
-  {
-    icon: Briefcase,
-    title: "Business English Executive",
-    subtitle: "Corporate Communication",
-    description: "Master professional communication for meetings, presentations, negotiations, and international business settings.",
-    features: ["Presentation Skills", "Email Mastery", "Negotiation Tactics", "Industry Vocabulary"],
-    popular: false,
-  },
-  {
-    icon: Gamepad2,
-    title: "Kid's Learning Fun",
-    subtitle: "Foundation English",
-    description: "Interactive games, storytelling, and engaging activities designed to make learning English exciting for young learners.",
-    features: ["Interactive Games", "Story Time", "Songs & Rhymes", "Fun Worksheets"],
-    popular: false,
-  },
-  {
-    icon: BookOpen,
-    title: "TOEFL Intensive",
-    subtitle: "University Admission Prep",
-    description: "Focused preparation for academic English with emphasis on university-level reading, writing, and critical thinking.",
-    features: ["Academic Writing", "Reading Strategies", "Listening Drills", "Speaking Tasks"],
-    popular: false,
-  },
-]
+import { useLanguage } from "@/lib/language-context"
 
 const cardVariants = {
   hidden: { 
@@ -63,6 +29,50 @@ const cardVariants = {
 export function Courses() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t, isRTL } = useLanguage()
+
+  const courses = [
+    {
+      icon: GraduationCap,
+      title: t("courses.ielts"),
+      subtitle: isRTL ? "اعداد للباند 7.5+" : "Band 7.5+ Prep",
+      description: t("courses.ieltsDesc"),
+      features: isRTL 
+        ? ["اختبارات تجريبية كاملة", "مراجعة الكتابة", "ممارسة المحادثة", "توقع الباند"]
+        : ["Full Mock Exams", "Writing Reviews", "Speaking Practice", "Band Prediction"],
+      popular: true,
+    },
+    {
+      icon: Briefcase,
+      title: t("courses.business"),
+      subtitle: isRTL ? "التواصل المهني" : "Corporate Communication",
+      description: t("courses.businessDesc"),
+      features: isRTL
+        ? ["مهارات العروض", "إتقان الإيميل", "تكتيكات التفاوض", "مصطلحات الصناعة"]
+        : ["Presentation Skills", "Email Mastery", "Negotiation Tactics", "Industry Vocabulary"],
+      popular: false,
+    },
+    {
+      icon: Gamepad2,
+      title: t("courses.kids"),
+      subtitle: isRTL ? "أساسيات الإنجليزية" : "Foundation English",
+      description: t("courses.kidsDesc"),
+      features: isRTL
+        ? ["ألعاب تفاعلية", "وقت القصص", "أغاني وأناشيد", "أوراق عمل ممتعة"]
+        : ["Interactive Games", "Story Time", "Songs & Rhymes", "Fun Worksheets"],
+      popular: false,
+    },
+    {
+      icon: BookOpen,
+      title: t("courses.toefl"),
+      subtitle: isRTL ? "إعداد للقبول الجامعي" : "University Admission Prep",
+      description: t("courses.toeflDesc"),
+      features: isRTL
+        ? ["الكتابة الأكاديمية", "استراتيجيات القراءة", "تدريبات الاستماع", "مهام المحادثة"]
+        : ["Academic Writing", "Reading Strategies", "Listening Drills", "Speaking Tasks"],
+      popular: false,
+    },
+  ]
 
   return (
     <section id="courses" className="bg-secondary py-16 md:py-24 relative overflow-hidden">
@@ -100,13 +110,13 @@ export function Courses() {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            Our Programs
+            {isRTL ? "برامجنا" : "Our Programs"}
           </motion.span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple text-balance">
-            Our Premium Courses
+            {t("courses.title")} <span className="text-yellow">{t("courses.titleHighlight")}</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Structured programs tailored to your specific goals and learning style
+            {t("courses.subtitle")}
           </p>
         </motion.div>
 
@@ -132,7 +142,7 @@ export function Courses() {
                   : "0 30px 60px -15px rgba(67, 37, 119, 0.25)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className={`relative bg-card rounded-3xl p-6 border cursor-pointer group overflow-hidden ${
+              className={`relative bg-card rounded-3xl p-6 border cursor-pointer group overflow-hidden ${isRTL ? "text-right" : "text-left"} ${
                 course.popular
                   ? "border-yellow shadow-lg"
                   : "border-border"
@@ -152,7 +162,7 @@ export function Courses() {
                   style={{ transform: "translateZ(40px) translateX(-50%)" }}
                 >
                   <span className="bg-yellow text-indigo px-4 py-1 rounded-full text-xs font-semibold whitespace-nowrap shadow-lg">
-                    Most Popular
+                    {t("courses.mostPopular")}
                   </span>
                 </motion.div>
               )}
@@ -186,8 +196,8 @@ export function Courses() {
                 {course.features.map((feature, i) => (
                   <motion.li 
                     key={i} 
-                    className="flex items-center gap-2 text-sm text-foreground"
-                    initial={{ opacity: 0, x: -20 }}
+                    className={`flex items-center gap-2 text-sm text-foreground ${isRTL ? "flex-row-reverse" : ""}`}
+                    initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ delay: 0.4 + i * 0.1 }}
                   >
@@ -214,8 +224,8 @@ export function Courses() {
                       : "bg-purple text-white hover:bg-purple/90"
                   }`}
                 >
-                  <span>Learn More</span>
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                  <span>{t("courses.enrollNow")}</span>
+                  <ArrowRight className={`w-4 h-4 transition-transform ${isRTL ? "mr-2 group-hover/btn:-translate-x-1 rotate-180" : "ml-2 group-hover/btn:translate-x-1"}`} />
                 </Button>
               </motion.div>
 

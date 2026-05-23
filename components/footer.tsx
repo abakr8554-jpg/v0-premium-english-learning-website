@@ -5,29 +5,7 @@ import { motion, useInView } from "framer-motion"
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Send, MapPin, Mail, Phone, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-
-const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Courses", href: "#courses" },
-  { label: "Meet Tutors", href: "#tutors" },
-  { label: "Success Stories", href: "#portfolio" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
-]
-
-const resources = [
-  { label: "Free Resources", href: "#" },
-  { label: "Placement Test", href: "#" },
-  { label: "Study Guides", href: "#" },
-  { label: "FAQ", href: "#" },
-]
-
-const corporate = [
-  { label: "Corporate Solutions", href: "#" },
-  { label: "Partnerships", href: "#" },
-  { label: "Group Training", href: "#" },
-  { label: "Enterprise Plans", href: "#" },
-]
+import { useLanguage } from "@/lib/language-context"
 
 const socials = [
   { icon: Facebook, href: "#", label: "Facebook" },
@@ -61,6 +39,30 @@ export function Footer() {
   const [email, setEmail] = useState("")
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t, isRTL } = useLanguage()
+
+  const quickLinks = [
+    { label: t("nav.home"), href: "#home" },
+    { label: t("nav.courses"), href: "#courses" },
+    { label: t("footer.ourTutors"), href: "#tutors" },
+    { label: t("footer.testimonials"), href: "#testimonials" },
+    { label: t("nav.blog"), href: "#blog" },
+    { label: t("nav.contact"), href: "#contact" },
+  ]
+
+  const resources = [
+    { label: t("footer.ebooks"), href: "#" },
+    { label: t("footer.placement"), href: "#" },
+    { label: t("footer.studyGuides"), href: "#" },
+    { label: t("footer.faq"), href: "#" },
+  ]
+
+  const corporate = [
+    { label: t("footer.forBusiness"), href: "#" },
+    { label: t("footer.partnerships"), href: "#" },
+    { label: t("footer.careers"), href: "#" },
+    { label: t("footer.affiliates"), href: "#" },
+  ]
 
   return (
     <footer id="contact" className="bg-indigo text-white relative overflow-hidden">
@@ -113,11 +115,11 @@ export function Footer() {
         >
           {/* Brand */}
           <motion.div 
-            className="col-span-2 md:col-span-3 lg:col-span-2"
+            className={`col-span-2 md:col-span-3 lg:col-span-2 ${isRTL ? "text-right" : "text-left"}`}
             variants={itemVariants}
           >
             <motion.div 
-              className="flex items-center gap-3 mb-4"
+              className={`flex items-center gap-3 mb-4 ${isRTL ? "flex-row-reverse justify-end" : ""}`}
               whileHover={{ scale: 1.02 }}
             >
               <motion.img 
@@ -130,20 +132,20 @@ export function Footer() {
               <span className="text-xl font-bold">Language Treats</span>
             </motion.div>
             <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-xs">
-              Crafting your English success story, treat by treat. Premium learning experiences with certified native tutors.
+              {t("footer.description")}
             </p>
 
             {/* Contact Info */}
             <div className="space-y-3 mb-6">
               {[
-                { icon: MapPin, text: "123 Learning Lane, Education District, London EC1A 1BB" },
+                { icon: MapPin, text: isRTL ? "123 شارع التعلم، حي التعليم، لندن" : "123 Learning Lane, Education District, London EC1A 1BB" },
                 { icon: Mail, text: "hello@languagetreats.com" },
                 { icon: Phone, text: "+44 (0) 20 1234 5678" },
               ].map((item, index) => (
                 <motion.div 
                   key={index}
-                  className="flex items-center gap-3 text-white/70 text-sm"
-                  whileHover={{ x: 5, color: "rgba(253, 197, 0, 1)" }}
+                  className={`flex items-center gap-3 text-white/70 text-sm ${isRTL ? "flex-row-reverse" : ""}`}
+                  whileHover={{ x: isRTL ? -5 : 5, color: "rgba(253, 197, 0, 1)" }}
                   transition={{ duration: 0.2 }}
                 >
                   <item.icon className="w-4 h-4 text-yellow flex-shrink-0" />
@@ -152,7 +154,7 @@ export function Footer() {
               ))}
             </div>
 
-            <div className="flex gap-3">
+            <div className={`flex gap-3 ${isRTL ? "justify-end" : ""}`}>
               {socials.map((social, index) => (
                 <motion.a
                   key={index}
@@ -176,18 +178,18 @@ export function Footer() {
           </motion.div>
 
           {/* Quick Links */}
-          <motion.div variants={itemVariants}>
-            <h4 className="font-semibold mb-4 text-yellow">Quick Links</h4>
+          <motion.div variants={itemVariants} className={isRTL ? "text-right" : "text-left"}>
+            <h4 className="font-semibold mb-4 text-yellow">{t("footer.quickLinks")}</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.li 
                   key={index}
-                  whileHover={{ x: 8 }}
+                  whileHover={{ x: isRTL ? -8 : 8 }}
                   transition={{ duration: 0.2 }}
                 >
                   <a
                     href={link.href}
-                    className="text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group"
+                    className={`text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
                     <motion.span 
                       className="w-0 h-0.5 bg-yellow group-hover:w-3 transition-all"
@@ -200,18 +202,18 @@ export function Footer() {
           </motion.div>
 
           {/* Resources */}
-          <motion.div variants={itemVariants}>
-            <h4 className="font-semibold mb-4 text-yellow">Resources</h4>
+          <motion.div variants={itemVariants} className={isRTL ? "text-right" : "text-left"}>
+            <h4 className="font-semibold mb-4 text-yellow">{t("footer.resources")}</h4>
             <ul className="space-y-3">
               {resources.map((link, index) => (
                 <motion.li 
                   key={index}
-                  whileHover={{ x: 8 }}
+                  whileHover={{ x: isRTL ? -8 : 8 }}
                   transition={{ duration: 0.2 }}
                 >
                   <a
                     href={link.href}
-                    className="text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group"
+                    className={`text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
                     <motion.span 
                       className="w-0 h-0.5 bg-yellow group-hover:w-3 transition-all"
@@ -224,18 +226,18 @@ export function Footer() {
           </motion.div>
 
           {/* Corporate */}
-          <motion.div variants={itemVariants}>
-            <h4 className="font-semibold mb-4 text-yellow">Corporate</h4>
+          <motion.div variants={itemVariants} className={isRTL ? "text-right" : "text-left"}>
+            <h4 className="font-semibold mb-4 text-yellow">{t("footer.corporate")}</h4>
             <ul className="space-y-3">
               {corporate.map((link, index) => (
                 <motion.li 
                   key={index}
-                  whileHover={{ x: 8 }}
+                  whileHover={{ x: isRTL ? -8 : 8 }}
                   transition={{ duration: 0.2 }}
                 >
                   <a
                     href={link.href}
-                    className="text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group"
+                    className={`text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
                     <motion.span 
                       className="w-0 h-0.5 bg-yellow group-hover:w-3 transition-all"
@@ -249,24 +251,24 @@ export function Footer() {
 
           {/* Newsletter */}
           <motion.div 
-            className="col-span-2 md:col-span-3 lg:col-span-1"
+            className={`col-span-2 md:col-span-3 lg:col-span-1 ${isRTL ? "text-right" : "text-left"}`}
             variants={itemVariants}
           >
-            <h4 className="font-semibold mb-4 text-yellow flex items-center gap-2">
+            <h4 className={`font-semibold mb-4 text-yellow flex items-center gap-2 ${isRTL ? "flex-row-reverse justify-end" : ""}`}>
               <Sparkles className="w-4 h-4" />
-              Newsletter
+              {t("footer.newsletter")}
             </h4>
             <p className="text-white/70 text-sm mb-4">
-              Get tips, resources, and exclusive offers.
+              {t("footer.newsletterDesc")}
             </p>
             <div className="flex flex-col gap-3">
               <motion.div whileHover={{ scale: 1.02 }}>
                 <Input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t("footer.emailPlaceholder")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-full h-11 focus:border-yellow focus:ring-yellow/30"
+                  className={`bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-full h-11 focus:border-yellow focus:ring-yellow/30 ${isRTL ? "text-right" : ""}`}
                 />
               </motion.div>
               <motion.div
@@ -274,10 +276,10 @@ export function Footer() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button
-                  className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full font-semibold w-full shadow-lg hover:shadow-yellow/30"
+                  className={`bg-yellow text-indigo hover:bg-yellow/90 rounded-full font-semibold w-full shadow-lg hover:shadow-yellow/30 ${isRTL ? "flex-row-reverse" : ""}`}
                 >
-                  <Send className="w-4 h-4 mr-2" />
-                  Subscribe
+                  <Send className={`w-4 h-4 ${isRTL ? "ml-2 rotate-180" : "mr-2"}`} />
+                  {t("footer.subscribe")}
                 </Button>
               </motion.div>
             </div>
@@ -286,16 +288,16 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <motion.div 
-          className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"
+          className={`mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 ${isRTL ? "md:flex-row-reverse" : ""}`}
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.8 }}
         >
           <p className="text-white/50 text-sm">
-            © {new Date().getFullYear()} Language Treats. All rights reserved.
+            © {new Date().getFullYear()} Language Treats. {t("footer.rights")}
           </p>
-          <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((text, index) => (
+          <div className={`flex gap-6 ${isRTL ? "flex-row-reverse" : ""}`}>
+            {[t("footer.privacy"), t("footer.terms"), t("footer.cookies")].map((text, index) => (
               <motion.a 
                 key={index}
                 href="#" 

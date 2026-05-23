@@ -12,10 +12,11 @@ import {
   ScrollToTop, 
   Preloader,
 } from "@/components/creative-elements"
+import { LanguageProvider } from "@/lib/language-context"
 
 export default function Home() {
   return (
-    <>
+    <LanguageProvider>
       <Preloader />
       <FloatingParticles />
       <main className="min-h-screen relative">
@@ -28,6 +29,6 @@ export default function Home() {
         <Footer />
       </main>
       <ScrollToTop />
-    </>
+    </LanguageProvider>
   )
 }

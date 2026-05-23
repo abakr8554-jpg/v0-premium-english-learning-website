@@ -4,11 +4,13 @@ import { useState, useEffect } from "react"
 import { Menu, X, Globe, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import { useLanguage } from "@/lib/language-context"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { language, setLanguage, t, isRTL } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +19,13 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  const navItems = [
+    { key: "nav.home", href: "#home" },
+    { key: "nav.courses", href: "#courses" },
+    { key: "nav.blog", href: "#blog" },
+    { key: "nav.contact", href: "#contact" },
+  ]
 
   return (
     <motion.nav 
@@ -57,17 +66,17 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            {["Home", "Courses", "Blog", "Contact"].map((item, index) => (
+            {navItems.map((item, index) => (
               <motion.a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
+                key={item.key}
+                href={item.href}
                 className="relative text-foreground hover:text-purple transition-colors font-medium group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -2 }}
               >
-                {item}
+                {t(item.key)}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow to-purple transition-all duration-300 group-hover:w-full" />
               </motion.a>
             ))}
@@ -87,7 +96,7 @@ export function Navbar() {
                 className="flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors text-sm px-3 py-2 rounded-full hover:bg-secondary"
               >
                 <Globe className="w-4 h-4" />
-                <span>EN</span>
+                <span>{language === "en" ? "EN" : "AR"}</span>
                 <ChevronDown className={`w-3 h-3 transition-transform ${langOpen ? "rotate-180" : ""}`} />
               </button>
               <AnimatePresence>
@@ -96,17 +105,22 @@ export function Navbar() {
                     initial={{ opacity: 0, y: 10, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                    className="absolute top-full right-0 mt-2 bg-card border border-border rounded-xl shadow-xl py-2 min-w-[120px] overflow-hidden"
+                    className={`absolute top-full mt-2 bg-card border border-border rounded-xl shadow-xl py-2 min-w-[120px] overflow-hidden ${isRTL ? "left-0" : "right-0"}`}
                   >
-                    {["English", "Espanol", "Deutsch", "Francais"].map((lang) => (
-                      <button 
-                        key={lang}
-                        className="w-full px-4 py-2 text-left text-sm hover:bg-secondary hover:text-purple transition-colors"
-                        onClick={() => setLangOpen(false)}
-                      >
-                        {lang}
-                      </button>
-                    ))}
+                    <button 
+                      className={`w-full px-4 py-2 text-left text-sm hover:bg-secondary hover:text-purple transition-colors flex items-center gap-2 ${language === "en" ? "bg-secondary/50" : ""}`}
+                      onClick={() => { setLanguage("en"); setLangOpen(false); }}
+                    >
+                      <span className="text-lg">🇺🇸</span>
+                      English
+                    </button>
+                    <button 
+                      className={`w-full px-4 py-2 text-left text-sm hover:bg-secondary hover:text-purple transition-colors flex items-center gap-2 ${language === "ar" ? "bg-secondary/50" : ""}`}
+                      onClick={() => { setLanguage("ar"); setLangOpen(false); }}
+                    >
+                      <span className="text-lg">🇸🇦</span>
+                      العربية
+                    </button>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -121,7 +135,7 @@ export function Navbar() {
               whileTap={{ scale: 0.95 }}
             >
               <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 font-semibold transition-all border-2 border-yellow hover:border-yellow/80 shadow-lg hover:shadow-yellow/25 magnetic-btn shine-effect">
-                Start Free Trial
+                {t("nav.startTrial")}
               </Button>
             </motion.div>
           </div>
@@ -168,19 +182,36 @@ export function Navbar() {
               className="lg:hidden overflow-hidden border-t border-border"
             >
               <div className="py-4 flex flex-col gap-2">
-                {["Home", "Courses", "Blog", "Contact"].map((item, index) => (
+                {navItems.map((item, index) => (
                   <motion.a
-                    key={item}
-                    href={`#${item.toLowerCase().replace(" ", "-")}`}
+                    key={item.key}
+                    href={item.href}
                     className="text-foreground hover:text-purple hover:bg-secondary transition-all font-medium px-4 py-3 rounded-lg"
                     onClick={() => setIsOpen(false)}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    {item}
+                    {t(item.key)}
                   </motion.a>
                 ))}
+                
+                {/* Mobile Language Selector */}
+                <div className="px-4 py-2 flex gap-2">
+                  <button
+                    onClick={() => setLanguage("en")}
+                    className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${language === "en" ? "bg-purple text-white" : "bg-secondary text-foreground"}`}
+                  >
+                    English
+                  </button>
+                  <button
+                    onClick={() => setLanguage("ar")}
+                    className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${language === "ar" ? "bg-purple text-white" : "bg-secondary text-foreground"}`}
+                  >
+                    العربية
+                  </button>
+                </div>
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -188,7 +219,7 @@ export function Navbar() {
                   className="px-4 pt-2"
                 >
                   <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 font-semibold w-full border-2 border-yellow">
-                    Start Free Trial
+                    {t("nav.startTrial")}
                   </Button>
                 </motion.div>
               </div>

@@ -3,33 +3,7 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Users, Globe, BarChart3, MessageCircle } from "lucide-react"
-
-const features = [
-  {
-    icon: Users,
-    title: "Verified Native Tutors (USA, UK)",
-    description: "Learn from certified professionals from native English-speaking countries with verified credentials and teaching experience.",
-    accent: "Tutors from 15+ countries",
-  },
-  {
-    icon: Globe,
-    title: "Global Curriculum (CEFR & IELTS)",
-    description: "Follow internationally recognized standards with our comprehensive curriculum aligned to CEFR levels and major exam requirements.",
-    accent: "Cambridge-aligned content",
-  },
-  {
-    icon: BarChart3,
-    title: "Real-time Progress Dashboard",
-    description: "Track your improvement with detailed analytics, skill assessments, and personalized learning paths updated in real-time.",
-    accent: "AI-powered insights",
-  },
-  {
-    icon: MessageCircle,
-    title: "24/7 Academic Support",
-    description: "Get help whenever you need it with round-the-clock access to our support team and learning resources.",
-    accent: "Average response: 5 minutes",
-  },
-]
+import { useLanguage } from "@/lib/language-context"
 
 const cardVariants = {
   hidden: { 
@@ -54,6 +28,34 @@ const cardVariants = {
 export function Features() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t, isRTL } = useLanguage()
+
+  const features = [
+    {
+      icon: Users,
+      title: t("features.nativeTutors"),
+      description: t("features.nativeTutorsDesc"),
+      accent: isRTL ? "مدرسين من 15+ دولة" : "Tutors from 15+ countries",
+    },
+    {
+      icon: Globe,
+      title: t("features.curriculum"),
+      description: t("features.curriculumDesc"),
+      accent: isRTL ? "محتوى معتمد من كامبريدج" : "Cambridge-aligned content",
+    },
+    {
+      icon: BarChart3,
+      title: t("features.progress"),
+      description: t("features.progressDesc"),
+      accent: isRTL ? "تحليلات بالذكاء الاصطناعي" : "AI-powered insights",
+    },
+    {
+      icon: MessageCircle,
+      title: t("features.support"),
+      description: t("features.supportDesc"),
+      accent: isRTL ? "متوسط الرد: 5 دقائق" : "Average response: 5 minutes",
+    },
+  ]
 
   return (
     <section className="bg-secondary py-16 md:py-24 relative overflow-hidden">
@@ -91,13 +93,13 @@ export function Features() {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            Why Choose Us
+            {isRTL ? "لماذا نحن" : "Why Choose Us"}
           </motion.span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple text-balance">
-            Why Choose Language Treats?
+            {t("features.title")} <span className="text-yellow">{t("features.titleHighlight")}</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Premium features designed to accelerate your English mastery
+            {t("features.subtitle")}
           </p>
         </motion.div>
 
@@ -121,7 +123,7 @@ export function Features() {
                 boxShadow: "0 30px 60px -15px rgba(67, 37, 119, 0.25)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-card rounded-3xl p-6 md:p-8 shadow-sm border border-border cursor-pointer group relative overflow-hidden"
+              className={`bg-card rounded-3xl p-6 md:p-8 shadow-sm border border-border cursor-pointer group relative overflow-hidden ${isRTL ? "text-right" : "text-left"}`}
               style={{ transformStyle: "preserve-3d" }}
             >
               {/* Gradient Overlay on Hover */}

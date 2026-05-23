@@ -3,8 +3,10 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { BookOpen, Globe, Mic, Quote, Sparkles } from "lucide-react"
+import { useLanguage } from "@/lib/language-context"
 
 export function Hero() {
+  const { t, isRTL } = useLanguage()
   const trustLogos = ["BBC Learning", "Educational Trust", "Cambridge Partner", "IELTS Official"]
 
   return (
@@ -43,8 +45,8 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
           {/* Content */}
           <motion.div 
-            className="text-center lg:text-left order-2 lg:order-1"
-            initial={{ opacity: 0, x: -50 }}
+            className={`text-center lg:text-${isRTL ? "right" : "left"} order-2 lg:order-1`}
+            initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
@@ -56,7 +58,7 @@ export function Hero() {
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.15)" }}
             >
               <Sparkles className="w-4 h-4 text-yellow" />
-              <span className="text-white/90 text-sm font-medium">Premium English Learning Platform</span>
+              <span className="text-white/90 text-sm font-medium">{t("hero.badge")}</span>
             </motion.div>
 
             <motion.h1 
@@ -65,7 +67,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              Language Treats -{" "}
+              {t("hero.title1")}{" "}
               <motion.span 
                 className="text-yellow inline-block"
                 animate={{ 
@@ -77,23 +79,23 @@ export function Hero() {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                Crafting Your English Success Story,
+                {t("hero.title2")}
               </motion.span>{" "}
-              Treat by Treat.
+              {t("hero.title3")}
             </motion.h1>
             
             <motion.p 
-              className="mt-6 text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-xl mx-auto lg:mx-0"
+              className={`mt-6 text-base md:text-lg lg:text-xl text-white/90 leading-relaxed max-w-xl mx-auto lg:mx-0 ${isRTL ? "lg:mr-0" : "lg:ml-0"}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
-              Experience personalized learning with certified native tutors, flexible hours, and a global curriculum designed for your success.
+              {t("hero.description")}
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div 
-              className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className={`mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-${isRTL ? "end" : "start"}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.9 }}
@@ -103,7 +105,7 @@ export function Hero() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-semibold transition-all shadow-lg hover:shadow-yellow/30 border-2 border-yellow shine-effect w-full sm:w-auto">
-                  Explore Premium Courses
+                  {t("hero.exploreCourses")}
                 </Button>
               </motion.div>
               <motion.div
@@ -114,7 +116,7 @@ export function Hero() {
                   variant="outline"
                   className="border-2 border-white text-white hover:bg-white/10 rounded-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-semibold transition-all bg-transparent w-full sm:w-auto"
                 >
-                  Book a Consultation
+                  {t("hero.bookConsultation")}
                 </Button>
               </motion.div>
             </motion.div>
@@ -127,9 +129,9 @@ export function Hero() {
               transition={{ delay: 1.2 }}
             >
               {[
-                { number: "50K+", label: "Students" },
-                { number: "200+", label: "Tutors" },
-                { number: "98%", label: "Success" }
+                { number: "50K+", label: t("hero.students") },
+                { number: "200+", label: t("hero.tutors") },
+                { number: "98%", label: t("hero.success") }
               ].map((stat, index) => (
                 <motion.div 
                   key={stat.label}
@@ -152,8 +154,8 @@ export function Hero() {
 
           {/* 3D Abstract Illustration - CSS Based */}
           <motion.div 
-            className="relative flex justify-center lg:justify-end order-1 lg:order-2"
-            initial={{ opacity: 0, x: 50 }}
+            className={`relative flex justify-center lg:justify-${isRTL ? "start" : "end"} order-1 lg:order-2`}
+            initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
@@ -216,7 +218,7 @@ export function Hero() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 md:py-6">
           <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8">
-            <span className="text-white/60 text-sm font-medium">As featured on:</span>
+            <span className="text-white/60 text-sm font-medium">{t("hero.featuredOn")}</span>
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10">
               {trustLogos.map((logo, index) => (
                 <motion.span 

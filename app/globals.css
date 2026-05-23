@@ -79,6 +79,7 @@
 
 @theme inline {
   --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-arabic: var(--font-cairo), 'Cairo', system-ui, sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-indigo: var(--indigo);
   --color-purple: var(--purple);
@@ -128,6 +129,51 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  font-family: var(--font-arabic), var(--font-sans);
+}
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+[dir="rtl"] .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+[dir="rtl"] .left-0 {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .right-0 {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .translate-x-full {
+  --tw-translate-x: -100%;
+}
+
+[dir="rtl"] .-translate-x-full {
+  --tw-translate-x: 100%;
+}
+
+[dir="rtl"] .rotate-180 {
+  --tw-rotate: -180deg;
 }
 
 @keyframes marquee {

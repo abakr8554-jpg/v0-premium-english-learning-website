@@ -4,49 +4,7 @@ import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight, Star, Award, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
-
-const tutors = [
-  {
-    name: "Sarah J.",
-    credential: "M.A. Applied Linguistics",
-    location: "United Kingdom",
-    specialty: "Academic Writing & IELTS",
-    experience: "12+ years teaching",
-    rating: 4.9,
-    reviews: 847,
-    bio: "Specialized in helping students achieve band 7.5+ in IELTS writing with proven methodologies.",
-  },
-  {
-    name: "Michael B.",
-    credential: "B.S. Education, IELTS Examiner",
-    location: "United States",
-    specialty: "Business English & Presentations",
-    experience: "8+ years teaching",
-    rating: 4.95,
-    reviews: 623,
-    bio: "Former corporate trainer at Fortune 500 companies. Expert in executive communication skills.",
-  },
-  {
-    name: "Anya R.",
-    credential: "Certified TOEFL Prep Specialist",
-    location: "Australia",
-    specialty: "TOEFL & University Prep",
-    experience: "10+ years teaching",
-    rating: 4.88,
-    reviews: 512,
-    bio: "Helped 500+ students gain admission to top universities with improved TOEFL scores.",
-  },
-  {
-    name: "James K.",
-    credential: "CELTA & DELTA Certified",
-    location: "Canada",
-    specialty: "Conversational English",
-    experience: "15+ years teaching",
-    rating: 4.92,
-    reviews: 934,
-    bio: "Master of making English fun and accessible. Specializes in building confidence in speaking.",
-  },
-]
+import { useLanguage } from "@/lib/language-context"
 
 const cardVariants = {
   hidden: { 
@@ -72,6 +30,58 @@ export function Tutors() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const { t, isRTL } = useLanguage()
+
+  const tutors = [
+    {
+      name: isRTL ? "سارة ج." : "Sarah J.",
+      credential: isRTL ? "ماجستير لغويات تطبيقية" : "M.A. Applied Linguistics",
+      location: isRTL ? "المملكة المتحدة" : "United Kingdom",
+      specialty: isRTL ? "الكتابة الأكاديمية و IELTS" : "Academic Writing & IELTS",
+      experience: isRTL ? "12+ سنة خبرة" : "12+ years teaching",
+      rating: 4.9,
+      reviews: 847,
+      bio: isRTL 
+        ? "متخصصة في مساعدة الطلاب لتحقيق باند 7.5+ في كتابة IELTS بمنهجيات مثبتة."
+        : "Specialized in helping students achieve band 7.5+ in IELTS writing with proven methodologies.",
+    },
+    {
+      name: isRTL ? "مايكل ب." : "Michael B.",
+      credential: isRTL ? "بكالوريوس تعليم، ممتحن IELTS" : "B.S. Education, IELTS Examiner",
+      location: isRTL ? "الولايات المتحدة" : "United States",
+      specialty: isRTL ? "إنجليزي الأعمال والعروض" : "Business English & Presentations",
+      experience: isRTL ? "8+ سنوات خبرة" : "8+ years teaching",
+      rating: 4.95,
+      reviews: 623,
+      bio: isRTL
+        ? "مدرب شركات سابق في شركات Fortune 500. خبير في مهارات التواصل التنفيذي."
+        : "Former corporate trainer at Fortune 500 companies. Expert in executive communication skills.",
+    },
+    {
+      name: isRTL ? "آنيا ر." : "Anya R.",
+      credential: isRTL ? "أخصائية إعداد TOEFL معتمدة" : "Certified TOEFL Prep Specialist",
+      location: isRTL ? "أستراليا" : "Australia",
+      specialty: isRTL ? "TOEFL والإعداد الجامعي" : "TOEFL & University Prep",
+      experience: isRTL ? "10+ سنوات خبرة" : "10+ years teaching",
+      rating: 4.88,
+      reviews: 512,
+      bio: isRTL
+        ? "ساعدت 500+ طالب في القبول بأفضل الجامعات بدرجات TOEFL محسنة."
+        : "Helped 500+ students gain admission to top universities with improved TOEFL scores.",
+    },
+    {
+      name: isRTL ? "جيمس ك." : "James K.",
+      credential: isRTL ? "معتمد CELTA و DELTA" : "CELTA & DELTA Certified",
+      location: isRTL ? "كندا" : "Canada",
+      specialty: isRTL ? "الإنجليزية المحادثية" : "Conversational English",
+      experience: isRTL ? "15+ سنة خبرة" : "15+ years teaching",
+      rating: 4.92,
+      reviews: 934,
+      bio: isRTL
+        ? "متخصص في جعل الإنجليزية ممتعة وسهلة. يركز على بناء الثقة في المحادثة."
+        : "Master of making English fun and accessible. Specializes in building confidence in speaking.",
+    },
+  ]
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % tutors.length)
@@ -117,13 +127,13 @@ export function Tutors() {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            Our Team
+            {isRTL ? "فريقنا" : "Our Team"}
           </motion.span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance">
-            Meet Our <span className="text-purple">Expert Tutors</span>
+            {t("tutors.title")} <span className="text-purple">{t("tutors.titleHighlight")}</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Learn from certified professionals with proven track records
+            {t("tutors.subtitle")}
           </p>
         </motion.div>
 
@@ -147,7 +157,7 @@ export function Tutors() {
                 boxShadow: "0 30px 60px -15px rgba(253, 197, 0, 0.3)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-card rounded-3xl p-6 border border-border cursor-pointer group overflow-hidden relative"
+              className={`bg-card rounded-3xl p-6 border border-border cursor-pointer group overflow-hidden relative ${isRTL ? "text-right" : "text-left"}`}
               style={{ transformStyle: "preserve-3d" }}
             >
               {/* Gradient Overlay */}
@@ -238,11 +248,11 @@ export function Tutors() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, rotateY: 90, scale: 0.8 }}
+                initial={{ opacity: 0, rotateY: isRTL ? -90 : 90, scale: 0.8 }}
                 animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-                exit={{ opacity: 0, rotateY: -90, scale: 0.8 }}
+                exit={{ opacity: 0, rotateY: isRTL ? 90 : -90, scale: 0.8 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="bg-card rounded-3xl p-6 border border-border"
+                className={`bg-card rounded-3xl p-6 border border-border ${isRTL ? "text-right" : "text-left"}`}
                 style={{ transformStyle: "preserve-3d" }}
               >
                 {/* Avatar */}
@@ -295,14 +305,14 @@ export function Tutors() {
             </AnimatePresence>
 
             {/* Navigation Buttons */}
-            <div className="flex justify-center gap-4 mt-6">
+            <div className={`flex justify-center gap-4 mt-6 ${isRTL ? "flex-row-reverse" : ""}`}>
               <Button
                 variant="outline"
                 size="icon"
                 onClick={prevSlide}
                 className="rounded-full border-purple/30 hover:bg-purple hover:text-white"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
               </Button>
               <div className="flex items-center gap-2">
                 {tutors.map((_, index) => (
@@ -323,7 +333,7 @@ export function Tutors() {
                 onClick={nextSlide}
                 className="rounded-full border-purple/30 hover:bg-purple hover:text-white"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className={`w-5 h-5 ${isRTL ? "rotate-180" : ""}`} />
               </Button>
             </div>
           </div>
