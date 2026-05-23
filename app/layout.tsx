@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'SpeakEasy | Master English with Confidence',
-  description: 'Learn English with native tutors, flexible hours, and proven methods. Join thousands of successful learners today.',
+  title: 'Language Treats | Crafting Your English Success Story',
+  description: 'Experience personalized English learning with certified native tutors, flexible hours, and a global CEFR & IELTS curriculum. Start your free trial today.',
   generator: 'v0.app',
   icons: {
     icon: [
