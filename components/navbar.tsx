@@ -57,7 +57,7 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
-            {["Home", "Courses", "Meet Tutors", "Success Stories", "Blog", "Contact"].map((item, index) => (
+            {["Home", "Courses", "Blog", "Contact"].map((item, index) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
@@ -168,7 +168,7 @@ export function Navbar() {
               className="lg:hidden overflow-hidden border-t border-border"
             >
               <div className="py-4 flex flex-col gap-2">
-                {["Home", "Courses", "Meet Tutors", "Success Stories", "Blog", "Contact"].map((item, index) => (
+                {["Home", "Courses", "Blog", "Contact"].map((item, index) => (
                   <motion.a
                     key={item}
                     href={`#${item.toLowerCase().replace(" ", "-")}`}
