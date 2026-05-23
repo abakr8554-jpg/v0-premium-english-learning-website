@@ -144,7 +144,10 @@ export const translations: Translations = {
     ar: "سنرد عليك خلال 24 ساعة.",
   },
   "contact.address": { en: "Address", ar: "العنوان" },
-  "contact.addressValue": { en: "Cairo, Egypt", ar: "القاهرة، مصر" },
+  "contact.addressValue": { 
+    en: "Petroleum Buildings, 14 Abdel Moneim Sanad Street, 5th Floor, Apt 5", 
+    ar: "مباني البترول، 14 شارع عبد المنعم سند، الدور الخامس، شقة 5" 
+  },
   "contact.callUs": { en: "Call Us", ar: "اتصل بنا" },
   "contact.emailUs": { en: "Email Us", ar: "راسلنا" },
   "contact.workingHours": { en: "Working Hours", ar: "ساعات العمل" },

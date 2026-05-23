@@ -3,17 +3,22 @@
 import { useState, useRef } from "react"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
-import { Facebook, Twitter, Instagram, Linkedin, Youtube, Send, MapPin, Mail, Phone, Sparkles } from "lucide-react"
+import { Facebook, Instagram, Send, MapPin, Mail, Phone, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useLanguage } from "@/lib/language-context"
 
+// TikTok icon (not available in lucide-react)
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z" />
+  </svg>
+)
+
 const socials = [
-  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
+  { icon: Facebook, href: "https://www.facebook.com/EngliMoneimSanadationalCenter", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/english__treats?igsh=dTJnM2ExbHZ6NHJw", label: "Instagram" },
+  { icon: TikTokIcon, href: "https://www.tiktok.com/@english_treats?_r=1&_t=ZS-96bNqmfNzJi", label: "TikTok" },
 ]
 
 const containerVariants = {
@@ -141,7 +146,7 @@ export function Footer() {
             {/* Contact Info */}
             <div className="space-y-3 mb-6">
               {[
-                { icon: MapPin, text: isRTL ? "123 شارع التعلم، حي التعليم، لندن" : "123 Learning Lane, Education District, London EC1A 1BB", href: "https://maps.google.com" },
+                { icon: MapPin, text: isRTL ? "مباني البترول، 14 شارع عبد المنعم سند، الدور الخامس، شقة 5" : "Petroleum Buildings, 14 Abdel Moneim Sanad Street, 5th Floor, Apt 5", href: "https://www.google.com/maps/search/?api=1&query=Petroleum+Buildings+14+Abdel+Moneim+Sanad+Street" },
                 { icon: Mail, text: "hello@languagetreats.com", href: "mailto:hello@languagetreats.com" },
                 { icon: Phone, text: "+44 (0) 20 1234 5678", href: "tel:+442012345678" },
               ].map((item, index) => (
