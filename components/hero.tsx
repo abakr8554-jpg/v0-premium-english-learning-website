@@ -47,9 +47,9 @@ export function Hero() {
 
           {/* 3D Abstract Illustration */}
           <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md">
+            <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md perspective-container">
               {/* Main 3D Container */}
-              <div className="relative aspect-square">
+              <div className="relative aspect-square" style={{ transformStyle: 'preserve-3d' }}>
                 {/* Central Logo Bubble */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm flex items-center justify-center shadow-2xl border border-white/20 animate-pulse-glow">

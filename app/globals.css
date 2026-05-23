@@ -143,149 +143,181 @@
   animation: marquee 20s linear infinite;
 }
 
-/* 3D Floating Animations */
-@keyframes float-1 {
+/* 3D Floating Animations with Perspective */
+@keyframes float-3d-1 {
   0%, 100% {
-    transform: translateY(0px) translateX(0px) rotate(12deg);
+    transform: perspective(1000px) translateY(0px) translateX(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotate(12deg);
   }
   25% {
-    transform: translateY(-15px) translateX(5px) rotate(18deg);
+    transform: perspective(1000px) translateY(-25px) translateX(15px) translateZ(30px) rotateX(15deg) rotateY(-10deg) rotate(20deg);
   }
   50% {
-    transform: translateY(-8px) translateX(-5px) rotate(8deg);
+    transform: perspective(1000px) translateY(-40px) translateX(-10px) translateZ(50px) rotateX(-10deg) rotateY(15deg) rotate(5deg);
   }
   75% {
-    transform: translateY(-20px) translateX(3px) rotate(15deg);
+    transform: perspective(1000px) translateY(-15px) translateX(8px) translateZ(20px) rotateX(8deg) rotateY(-5deg) rotate(18deg);
   }
 }
 
-@keyframes float-2 {
+@keyframes float-3d-2 {
   0%, 100% {
-    transform: translateY(0px) translateX(0px) rotate(-6deg);
+    transform: perspective(1000px) translateY(0px) translateX(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotate(-6deg);
   }
   25% {
-    transform: translateY(-12px) translateX(-8px) rotate(-12deg);
+    transform: perspective(1000px) translateY(-30px) translateX(-20px) translateZ(40px) rotateX(-12deg) rotateY(20deg) rotate(-15deg);
   }
   50% {
-    transform: translateY(-20px) translateX(4px) rotate(0deg);
+    transform: perspective(1000px) translateY(-50px) translateX(15px) translateZ(60px) rotateX(10deg) rotateY(-15deg) rotate(0deg);
   }
   75% {
-    transform: translateY(-6px) translateX(-4px) rotate(-8deg);
+    transform: perspective(1000px) translateY(-20px) translateX(-8px) translateZ(25px) rotateX(-5deg) rotateY(8deg) rotate(-10deg);
   }
 }
 
-@keyframes float-3 {
+@keyframes float-3d-3 {
   0%, 100% {
-    transform: translateY(0px) translateX(0px) rotate(6deg);
+    transform: perspective(1000px) translateY(0px) translateX(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotate(6deg);
   }
   25% {
-    transform: translateY(-18px) translateX(6px) rotate(12deg);
+    transform: perspective(1000px) translateY(-35px) translateX(12px) translateZ(45px) rotateX(18deg) rotateY(-12deg) rotate(15deg);
   }
   50% {
-    transform: translateY(-10px) translateX(-8px) rotate(0deg);
+    transform: perspective(1000px) translateY(-20px) translateX(-18px) translateZ(30px) rotateX(-15deg) rotateY(20deg) rotate(-5deg);
   }
   75% {
-    transform: translateY(-22px) translateX(2px) rotate(8deg);
+    transform: perspective(1000px) translateY(-45px) translateX(5px) translateZ(55px) rotateX(10deg) rotateY(-8deg) rotate(12deg);
   }
 }
 
-@keyframes float-4 {
+@keyframes float-3d-4 {
   0%, 100% {
-    transform: translateY(0px) scale(1);
+    transform: perspective(1000px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) scale(1);
   }
   25% {
-    transform: translateY(-10px) scale(1.05);
+    transform: perspective(1000px) translateY(-20px) translateZ(35px) rotateX(12deg) rotateY(12deg) scale(1.1);
   }
   50% {
-    transform: translateY(-18px) scale(0.98);
+    transform: perspective(1000px) translateY(-35px) translateZ(50px) rotateX(-8deg) rotateY(-8deg) scale(0.95);
   }
   75% {
-    transform: translateY(-8px) scale(1.02);
+    transform: perspective(1000px) translateY(-15px) translateZ(20px) rotateX(5deg) rotateY(5deg) scale(1.05);
   }
 }
 
-@keyframes float-5 {
+@keyframes float-3d-5 {
   0%, 100% {
-    transform: translateY(0px) translateX(0px) rotate(0deg);
+    transform: perspective(1000px) translateY(0px) translateX(0px) translateZ(0px) rotateX(0deg) rotateY(0deg);
   }
   25% {
-    transform: translateY(-14px) translateX(-6px) rotate(-5deg);
+    transform: perspective(1000px) translateY(-28px) translateX(-15px) translateZ(40px) rotateX(-15deg) rotateY(18deg);
   }
   50% {
-    transform: translateY(-6px) translateX(8px) rotate(5deg);
+    transform: perspective(1000px) translateY(-12px) translateX(20px) translateZ(25px) rotateX(12deg) rotateY(-12deg);
   }
   75% {
-    transform: translateY(-20px) translateX(-3px) rotate(-3deg);
+    transform: perspective(1000px) translateY(-40px) translateX(-8px) translateZ(55px) rotateX(-8deg) rotateY(10deg);
   }
 }
 
-@keyframes float-6 {
+@keyframes float-3d-6 {
   0%, 100% {
-    transform: translateY(0px) translateX(0px);
+    transform: perspective(1000px) translateY(0px) translateX(0px) translateZ(0px) rotateX(0deg) rotateY(0deg);
   }
   25% {
-    transform: translateY(-16px) translateX(4px);
+    transform: perspective(1000px) translateY(-32px) translateX(10px) translateZ(45px) rotateX(20deg) rotateY(-15deg);
   }
   50% {
-    transform: translateY(-8px) translateX(-6px);
+    transform: perspective(1000px) translateY(-18px) translateX(-15px) translateZ(30px) rotateX(-12deg) rotateY(18deg);
   }
   75% {
-    transform: translateY(-22px) translateX(2px);
+    transform: perspective(1000px) translateY(-45px) translateX(5px) translateZ(60px) rotateX(8deg) rotateY(-10deg);
   }
 }
 
-@keyframes float-7 {
+@keyframes float-3d-7 {
   0%, 100% {
-    transform: translateY(0px) translateX(0px) rotate(0deg);
+    transform: perspective(1000px) translateY(0px) translateX(0px) translateZ(0px) rotateX(0deg) rotateY(0deg);
   }
   25% {
-    transform: translateY(-12px) translateX(7px) rotate(8deg);
+    transform: perspective(1000px) translateY(-22px) translateX(18px) translateZ(35px) rotateX(-18deg) rotateY(-20deg);
   }
   50% {
-    transform: translateY(-20px) translateX(-4px) rotate(-5deg);
+    transform: perspective(1000px) translateY(-38px) translateX(-12px) translateZ(50px) rotateX(15deg) rotateY(15deg);
   }
   75% {
-    transform: translateY(-6px) translateX(5px) rotate(3deg);
+    transform: perspective(1000px) translateY(-10px) translateX(10px) translateZ(20px) rotateX(-8deg) rotateY(-8deg);
   }
 }
 
-@keyframes pulse-glow {
+@keyframes orbit-slow {
+  0% {
+    transform: perspective(1000px) rotate(0deg) translateX(30px) rotate(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotate(360deg) translateX(30px) rotate(-360deg);
+  }
+}
+
+@keyframes pulse-glow-3d {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(253, 197, 0, 0.3);
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1);
+    box-shadow: 0 0 30px rgba(253, 197, 0, 0.4), 0 0 60px rgba(253, 197, 0, 0.2);
+  }
+  25% {
+    transform: perspective(1000px) rotateX(3deg) rotateY(-3deg) scale(1.02);
+    box-shadow: 0 0 50px rgba(253, 197, 0, 0.6), 0 0 80px rgba(253, 197, 0, 0.3);
   }
   50% {
-    box-shadow: 0 0 40px rgba(253, 197, 0, 0.6);
+    transform: perspective(1000px) rotateX(-2deg) rotateY(2deg) scale(1);
+    box-shadow: 0 0 40px rgba(253, 197, 0, 0.5), 0 0 70px rgba(253, 197, 0, 0.25);
+  }
+  75% {
+    transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+    box-shadow: 0 0 45px rgba(253, 197, 0, 0.55), 0 0 75px rgba(253, 197, 0, 0.28);
   }
 }
 
 .animate-float-1 {
-  animation: float-1 4s ease-in-out infinite;
+  animation: float-3d-1 3s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .animate-float-2 {
-  animation: float-2 5s ease-in-out infinite;
+  animation: float-3d-2 3.5s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .animate-float-3 {
-  animation: float-3 4.5s ease-in-out infinite;
+  animation: float-3d-3 2.8s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .animate-float-4 {
-  animation: float-4 6s ease-in-out infinite;
+  animation: float-3d-4 4s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .animate-float-5 {
-  animation: float-5 5.5s ease-in-out infinite;
+  animation: float-3d-5 3.2s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .animate-float-6 {
-  animation: float-6 4.8s ease-in-out infinite;
+  animation: float-3d-6 3.8s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .animate-float-7 {
-  animation: float-7 5.2s ease-in-out infinite;
+  animation: float-3d-7 3.4s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+  animation: pulse-glow-3d 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.perspective-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
