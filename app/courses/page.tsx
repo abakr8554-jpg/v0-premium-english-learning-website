@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Courses } from "@/components/courses"
-import { ScrollToTop, FloatingParticles } from "@/components/creative-elements"
+import { FloatingParticles } from "@/components/creative-elements"
 import { useLanguage } from "@/lib/language-context"
 import { Sparkles } from "lucide-react"
 
@@ -63,7 +63,6 @@ export default function CoursesPage() {
       <Courses />
 
       <Footer />
-      <ScrollToTop />
     </main>
   )
 }

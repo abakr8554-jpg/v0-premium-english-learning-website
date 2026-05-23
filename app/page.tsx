@@ -5,7 +5,7 @@ import { Tutors } from "@/components/tutors"
 import { Courses } from "@/components/courses"
 import { Testimonials } from "@/components/testimonials"
 import { Footer } from "@/components/footer"
-import { FloatingParticles, ScrollToTop, Preloader } from "@/components/creative-elements"
+import { FloatingParticles, Preloader } from "@/components/creative-elements"
 
 export default function Home() {
   return (
@@ -21,7 +21,6 @@ export default function Home() {
         <Testimonials />
         <Footer />
       </main>
-      <ScrollToTop />
     </>
   )
 }

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { ScrollToTop, FloatingParticles } from "@/components/creative-elements"
+import { FloatingParticles } from "@/components/creative-elements"
 import { useLanguage } from "@/lib/language-context"
 import { Calendar, Clock, ArrowRight, ArrowLeft } from "lucide-react"
 
@@ -173,7 +173,6 @@ export default function BlogPage() {
       </section>
 
       <Footer />
-      <ScrollToTop />
     </main>
   )
 }

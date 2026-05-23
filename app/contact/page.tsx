@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { ScrollToTop, FloatingParticles } from "@/components/creative-elements"
+import { FloatingParticles } from "@/components/creative-elements"
 import { useLanguage } from "@/lib/language-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -217,7 +217,6 @@ export default function ContactPage() {
       </section>
 
       <Footer />
-      <ScrollToTop />
     </main>
   )
 }

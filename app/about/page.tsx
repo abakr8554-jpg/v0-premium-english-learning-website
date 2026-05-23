@@ -5,7 +5,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Tutors } from "@/components/tutors"
 import { Testimonials } from "@/components/testimonials"
-import { ScrollToTop, FloatingParticles } from "@/components/creative-elements"
+import { FloatingParticles } from "@/components/creative-elements"
 import { useLanguage } from "@/lib/language-context"
 import { Target, Eye, Heart, Users, Award, Globe } from "lucide-react"
 
@@ -118,7 +118,6 @@ export default function AboutPage() {
       <Tutors />
       <Testimonials />
       <Footer />
-      <ScrollToTop />
     </main>
   )
 }
