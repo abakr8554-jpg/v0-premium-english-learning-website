@@ -46,10 +46,11 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-yellow flex items-center justify-center relative">
-                <span className="text-indigo font-bold text-lg">e</span>
-                <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-purple rounded-full" />
-              </div>
+              <img 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile-cover-PJMN1FpcIL7o4NjWk9qNTwg6DWbQTV.jpg"
+                alt="Language Treats Logo"
+                className="w-10 h-10 rounded-full object-cover"
+              />
               <span className="text-xl font-bold">Language Treats</span>
             </div>
             <p className="text-white/70 text-sm leading-relaxed mb-6 max-w-xs">
