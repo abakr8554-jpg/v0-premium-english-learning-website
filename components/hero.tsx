@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { BookOpen, Globe, Mic, Quote, Sparkles, ChevronDown } from "lucide-react"
+import { BookOpen, Globe, Mic, Quote, Sparkles } from "lucide-react"
 
 export function Hero() {
   const trustLogos = ["BBC Learning", "Educational Trust", "Cambridge Partner", "IELTS Official"]
@@ -206,27 +206,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2 }}
-      >
-        <span className="text-white/60 text-sm font-medium">Scroll to explore</span>
-        <motion.div
-          className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2"
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <motion.div
-            className="w-1.5 h-3 bg-yellow rounded-full"
-            animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        </motion.div>
-      </motion.div>
 
       {/* Trust Bar */}
       <motion.div 
