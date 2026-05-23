@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
+import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight, Star, Award, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -47,8 +48,30 @@ const tutors = [
   },
 ]
 
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 60,
+    rotateX: -10,
+    scale: 0.9
+  },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.12,
+      duration: 0.8,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }
+  })
+}
+
 export function Tutors() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % tutors.length)
@@ -59,33 +82,96 @@ export function Tutors() {
   }
 
   return (
-    <section id="tutors" className="bg-background py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="tutors" className="bg-background py-20 md:py-28 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div 
+          className="absolute top-20 right-1/4 w-72 h-72 bg-purple/5 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1, 1.4, 1],
+            x: [0, 40, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute bottom-20 left-1/4 w-64 h-64 bg-yellow/10 rounded-full blur-3xl"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            x: [0, -30, 0],
+          }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={ref}>
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple">
-            Meet Our Expert Tutors
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.span 
+            className="inline-block px-4 py-2 bg-purple/10 text-purple rounded-full text-sm font-semibold mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.2 }}
+          >
+            Our Team
+          </motion.span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground text-balance">
+            Meet Our <span className="text-purple">Expert Tutors</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Learn from certified professionals with proven track records
           </p>
-        </div>
+        </motion.div>
 
-        {/* Desktop Carousel */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Desktop 3D Grid */}
+        <div 
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          style={{ perspective: "1500px" }}
+        >
           {tutors.map((tutor, index) => (
-            <div
-              key={index}
-              className="bg-card rounded-3xl p-6 border border-border hover:border-yellow hover:shadow-xl transition-all duration-300 group"
+            <motion.div
+              key={tutor.name}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              whileHover={{ 
+                y: -20,
+                rotateY: index % 2 === 0 ? 10 : -10,
+                rotateX: 5,
+                scale: 1.05,
+                boxShadow: "0 30px 60px -15px rgba(253, 197, 0, 0.3)"
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="bg-card rounded-3xl p-6 border border-border cursor-pointer group overflow-hidden relative"
+              style={{ transformStyle: "preserve-3d" }}
             >
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow/0 to-purple/0 group-hover:from-yellow/5 group-hover:to-purple/5 transition-all duration-500" />
+              
               {/* Avatar */}
-              <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-purple to-indigo flex items-center justify-center mb-4">
+              <motion.div 
+                className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-purple via-purple to-indigo flex items-center justify-center mb-4 relative"
+                whileHover={{ scale: 1.15, rotateZ: 5 }}
+                style={{ transform: "translateZ(40px)" }}
+              >
                 <span className="text-white font-bold text-2xl">{tutor.name.charAt(0)}</span>
-              </div>
+                <motion.div 
+                  className="absolute -bottom-1 -right-1 w-6 h-6 bg-yellow rounded-full flex items-center justify-center"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Star className="w-3 h-3 text-indigo fill-indigo" />
+                </motion.div>
+              </motion.div>
 
-              {/* Name & Credentials */}
-              <div className="text-center mb-4">
-                <h3 className="text-xl font-bold text-foreground">{tutor.name}</h3>
+              {/* Content */}
+              <div className="text-center relative" style={{ transform: "translateZ(25px)" }}>
+                <h3 className="text-xl font-bold text-foreground group-hover:text-purple transition-colors">{tutor.name}</h3>
                 <p className="text-sm text-purple font-medium mt-1">{tutor.credential}</p>
                 <div className="flex items-center justify-center gap-1 text-muted-foreground text-sm mt-2">
                   <MapPin className="w-3 h-3" />
@@ -94,92 +180,119 @@ export function Tutors() {
               </div>
 
               {/* Rating */}
-              <div className="flex items-center justify-center gap-2 mb-4">
+              <motion.div 
+                className="flex items-center justify-center gap-2 my-4"
+                style={{ transform: "translateZ(20px)" }}
+              >
                 <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 fill-yellow text-yellow" />
-                  <span className="font-semibold text-foreground">{tutor.rating}</span>
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                    >
+                      <Star className="w-4 h-4 fill-yellow text-yellow" />
+                    </motion.div>
+                  ))}
                 </div>
-                <span className="text-muted-foreground text-sm">({tutor.reviews} reviews)</span>
-              </div>
+                <span className="font-semibold text-foreground">{tutor.rating}</span>
+              </motion.div>
 
               {/* Specialty */}
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <Award className="w-4 h-4 text-purple" />
+              <div className="flex items-center justify-center gap-2 mb-4" style={{ transform: "translateZ(15px)" }}>
+                <Award className="w-4 h-4 text-yellow" />
                 <span className="text-sm font-medium text-foreground">{tutor.specialty}</span>
               </div>
 
               {/* Bio */}
-              <p className="text-muted-foreground text-sm text-center leading-relaxed mb-4">
+              <p className="text-muted-foreground text-sm text-center leading-relaxed mb-4" style={{ transform: "translateZ(10px)" }}>
                 {tutor.bio}
               </p>
 
               {/* Experience Badge */}
-              <div className="text-center">
-                <span className="inline-block text-xs font-medium text-purple bg-purple/10 px-3 py-1 rounded-full">
+              <motion.div 
+                className="text-center"
+                whileHover={{ scale: 1.05 }}
+                style={{ transform: "translateZ(30px)" }}
+              >
+                <span className="inline-block text-xs font-medium text-purple bg-purple/10 px-4 py-1.5 rounded-full">
                   {tutor.experience}
                 </span>
-              </div>
-            </div>
+              </motion.div>
+
+              {/* Bottom Glow */}
+              <motion.div 
+                className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-yellow via-purple to-yellow rounded-b-3xl"
+                initial={{ scaleX: 0 }}
+                whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.4 }}
+              />
+            </motion.div>
           ))}
         </div>
 
-        {/* Mobile Carousel */}
+        {/* Mobile 3D Carousel */}
         <div className="md:hidden">
-          <div className="relative">
-            <div className="overflow-hidden">
-              <div
-                className="flex transition-transform duration-300"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          <div className="relative" style={{ perspective: "1000px" }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, rotateY: 90, scale: 0.8 }}
+                animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+                exit={{ opacity: 0, rotateY: -90, scale: 0.8 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="bg-card rounded-3xl p-6 border border-border"
+                style={{ transformStyle: "preserve-3d" }}
               >
-                {tutors.map((tutor, index) => (
-                  <div key={index} className="w-full flex-shrink-0 px-2">
-                    <div className="bg-card rounded-3xl p-6 border border-border">
-                      {/* Avatar */}
-                      <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-purple to-indigo flex items-center justify-center mb-4">
-                        <span className="text-white font-bold text-2xl">{tutor.name.charAt(0)}</span>
-                      </div>
+                {/* Avatar */}
+                <motion.div 
+                  className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-purple to-indigo flex items-center justify-center mb-4"
+                  animate={{ rotateY: [0, 360] }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                >
+                  <span className="text-white font-bold text-3xl">{tutors[currentIndex].name.charAt(0)}</span>
+                </motion.div>
 
-                      {/* Name & Credentials */}
-                      <div className="text-center mb-4">
-                        <h3 className="text-xl font-bold text-foreground">{tutor.name}</h3>
-                        <p className="text-sm text-purple font-medium mt-1">{tutor.credential}</p>
-                        <div className="flex items-center justify-center gap-1 text-muted-foreground text-sm mt-2">
-                          <MapPin className="w-3 h-3" />
-                          <span>{tutor.location}</span>
-                        </div>
-                      </div>
-
-                      {/* Rating */}
-                      <div className="flex items-center justify-center gap-2 mb-4">
-                        <div className="flex items-center gap-1">
-                          <Star className="w-4 h-4 fill-yellow text-yellow" />
-                          <span className="font-semibold text-foreground">{tutor.rating}</span>
-                        </div>
-                        <span className="text-muted-foreground text-sm">({tutor.reviews} reviews)</span>
-                      </div>
-
-                      {/* Specialty */}
-                      <div className="flex items-center justify-center gap-2 mb-4">
-                        <Award className="w-4 h-4 text-purple" />
-                        <span className="text-sm font-medium text-foreground">{tutor.specialty}</span>
-                      </div>
-
-                      {/* Bio */}
-                      <p className="text-muted-foreground text-sm text-center leading-relaxed mb-4">
-                        {tutor.bio}
-                      </p>
-
-                      {/* Experience Badge */}
-                      <div className="text-center">
-                        <span className="inline-block text-xs font-medium text-purple bg-purple/10 px-3 py-1 rounded-full">
-                          {tutor.experience}
-                        </span>
-                      </div>
-                    </div>
+                {/* Content */}
+                <div className="text-center mb-4">
+                  <h3 className="text-xl font-bold text-foreground">{tutors[currentIndex].name}</h3>
+                  <p className="text-sm text-purple font-medium mt-1">{tutors[currentIndex].credential}</p>
+                  <div className="flex items-center justify-center gap-1 text-muted-foreground text-sm mt-2">
+                    <MapPin className="w-3 h-3" />
+                    <span>{tutors[currentIndex].location}</span>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+
+                {/* Rating */}
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-yellow text-yellow" />
+                    ))}
+                  </div>
+                  <span className="font-semibold text-foreground">{tutors[currentIndex].rating}</span>
+                </div>
+
+                {/* Specialty */}
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <Award className="w-4 h-4 text-purple" />
+                  <span className="text-sm font-medium text-foreground">{tutors[currentIndex].specialty}</span>
+                </div>
+
+                {/* Bio */}
+                <p className="text-muted-foreground text-sm text-center leading-relaxed mb-4">
+                  {tutors[currentIndex].bio}
+                </p>
+
+                {/* Experience Badge */}
+                <div className="text-center">
+                  <span className="inline-block text-xs font-medium text-purple bg-purple/10 px-3 py-1 rounded-full">
+                    {tutors[currentIndex].experience}
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
             {/* Navigation Buttons */}
             <div className="flex justify-center gap-4 mt-6">
@@ -193,12 +306,14 @@ export function Tutors() {
               </Button>
               <div className="flex items-center gap-2">
                 {tutors.map((_, index) => (
-                  <button
+                  <motion.button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === currentIndex ? "bg-purple w-6" : "bg-purple/30"
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentIndex ? "bg-purple w-8" : "bg-purple/30 w-2"
                     }`}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
                   />
                 ))}
               </div>
