@@ -143,26 +143,28 @@ export function Courses() {
                   : "0 30px 60px -15px rgba(67, 37, 119, 0.25)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className={`relative bg-card rounded-3xl p-6 border cursor-pointer group overflow-hidden ${isRTL ? "text-right" : "text-left"} ${
+              className={`relative bg-card rounded-3xl p-6 border cursor-pointer group ${isRTL ? "text-right" : "text-left"} ${
                 course.popular
-                  ? "border-yellow shadow-lg"
+                  ? "border-yellow shadow-lg mt-4"
                   : "border-border"
               }`}
               style={{ transformStyle: "preserve-3d" }}
             >
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple/0 to-yellow/0 group-hover:from-purple/5 group-hover:to-yellow/5 transition-all duration-500" />
+              {/* Gradient Overlay - clipped to card */}
+              <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple/0 to-yellow/0 group-hover:from-purple/5 group-hover:to-yellow/5 transition-all duration-500" />
+              </div>
               
               {/* Popular Badge */}
               {course.popular && (
                 <motion.div 
-                  className="absolute -top-3 left-1/2 -translate-x-1/2"
+                  className="absolute -top-3 left-1/2 z-20"
                   initial={{ y: -20, opacity: 0 }}
                   animate={isInView ? { y: 0, opacity: 1 } : {}}
                   transition={{ delay: 0.5 }}
                   style={{ transform: "translateZ(40px) translateX(-50%)" }}
                 >
-                  <span className="bg-yellow text-indigo px-4 py-1 rounded-full text-xs font-semibold whitespace-nowrap shadow-lg">
+                  <span className="bg-yellow text-indigo px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap shadow-lg block">
                     {t("courses.mostPopular")}
                   </span>
                 </motion.div>
@@ -234,7 +236,7 @@ export function Courses() {
 
               {/* Bottom glow line */}
               <motion.div 
-                className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-3xl ${
+                className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-3xl overflow-hidden ${
                   course.popular 
                     ? "bg-gradient-to-r from-yellow via-purple to-yellow"
                     : "bg-gradient-to-r from-purple via-yellow to-purple"
