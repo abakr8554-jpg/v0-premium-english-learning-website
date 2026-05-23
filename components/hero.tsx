@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { BookOpen, Globe, Mic, Quote, Sparkles } from "lucide-react"
@@ -104,20 +105,24 @@ export function Hero() {
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-semibold transition-all shadow-lg hover:shadow-yellow/30 border-2 border-yellow shine-effect w-full sm:w-auto">
-                  {t("hero.exploreCourses")}
-                </Button>
+                <Link href="/courses">
+                  <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-semibold transition-all shadow-lg hover:shadow-yellow/30 border-2 border-yellow shine-effect w-full sm:w-auto">
+                    {t("hero.exploreCourses")}
+                  </Button>
+                </Link>
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white/10 rounded-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-semibold transition-all bg-transparent w-full sm:w-auto"
-                >
-                  {t("hero.bookConsultation")}
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    variant="outline"
+                    className="border-2 border-white text-white hover:bg-white/10 rounded-full px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-semibold transition-all bg-transparent w-full sm:w-auto"
+                  >
+                    {t("hero.bookConsultation")}
+                  </Button>
+                </Link>
               </motion.div>
             </motion.div>
 

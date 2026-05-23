@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
+import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { Facebook, Twitter, Instagram, Linkedin, Youtube, Send, MapPin, Mail, Phone, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -8,11 +9,11 @@ import { Input } from "@/components/ui/input"
 import { useLanguage } from "@/lib/language-context"
 
 const socials = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+  { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
 ]
 
 const containerVariants = {
@@ -44,26 +45,26 @@ export function Footer() {
   const { t, isRTL } = useLanguage()
 
   const quickLinks = [
-    { label: t("nav.home"), href: "#home" },
-    { label: t("nav.courses"), href: "#courses" },
-    { label: t("footer.ourTutors"), href: "#tutors" },
-    { label: t("footer.testimonials"), href: "#testimonials" },
-    { label: t("nav.blog"), href: "#blog" },
-    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.home"), href: "/" },
+    { label: t("nav.courses"), href: "/courses" },
+    { label: t("footer.ourTutors"), href: "/about" },
+    { label: t("footer.testimonials"), href: "/about" },
+    { label: t("nav.blog"), href: "/blog" },
+    { label: t("nav.contact"), href: "/contact" },
   ]
 
   const resources = [
-    { label: t("footer.ebooks"), href: "#" },
-    { label: t("footer.placement"), href: "#" },
-    { label: t("footer.studyGuides"), href: "#" },
-    { label: t("footer.faq"), href: "#" },
+    { label: t("footer.ebooks"), href: "/blog" },
+    { label: t("footer.placement"), href: "/contact" },
+    { label: t("footer.studyGuides"), href: "/blog" },
+    { label: t("footer.faq"), href: "/contact" },
   ]
 
   const corporate = [
-    { label: t("footer.forBusiness"), href: "#" },
-    { label: t("footer.partnerships"), href: "#" },
-    { label: t("footer.careers"), href: "#" },
-    { label: t("footer.affiliates"), href: "#" },
+    { label: t("footer.forBusiness"), href: "/courses" },
+    { label: t("footer.partnerships"), href: "/contact" },
+    { label: t("footer.careers"), href: "/about" },
+    { label: t("footer.affiliates"), href: "/contact" },
   ]
 
   return (
@@ -140,19 +141,22 @@ export function Footer() {
             {/* Contact Info */}
             <div className="space-y-3 mb-6">
               {[
-                { icon: MapPin, text: isRTL ? "123 شارع التعلم، حي التعليم، لندن" : "123 Learning Lane, Education District, London EC1A 1BB" },
-                { icon: Mail, text: "hello@languagetreats.com" },
-                { icon: Phone, text: "+44 (0) 20 1234 5678" },
+                { icon: MapPin, text: isRTL ? "123 شارع التعلم، حي التعليم، لندن" : "123 Learning Lane, Education District, London EC1A 1BB", href: "https://maps.google.com" },
+                { icon: Mail, text: "hello@languagetreats.com", href: "mailto:hello@languagetreats.com" },
+                { icon: Phone, text: "+44 (0) 20 1234 5678", href: "tel:+442012345678" },
               ].map((item, index) => (
-                <motion.div 
+                <motion.a 
                   key={index}
-                  className={`flex items-center gap-3 text-white/70 text-sm ${isRTL ? "flex-row-reverse" : ""}`}
-                  whileHover={{ x: isRTL ? -5 : 5, color: "rgba(253, 197, 0, 1)" }}
+                  href={item.href}
+                  target={item.icon === MapPin ? "_blank" : undefined}
+                  rel={item.icon === MapPin ? "noopener noreferrer" : undefined}
+                  className={`flex items-center gap-3 text-white/70 text-sm hover:text-yellow transition-colors ${isRTL ? "flex-row-reverse" : ""}`}
+                  whileHover={{ x: isRTL ? -5 : 5 }}
                   transition={{ duration: 0.2 }}
                 >
                   <item.icon className="w-4 h-4 text-yellow flex-shrink-0" />
                   <span>{item.text}</span>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
 
@@ -161,6 +165,8 @@ export function Footer() {
                 <motion.a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-yellow hover:text-indigo transition-all"
                   whileHover={{ 
@@ -189,7 +195,7 @@ export function Footer() {
                   whileHover={{ x: isRTL ? -8 : 8 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className={`text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
@@ -197,7 +203,7 @@ export function Footer() {
                       className="w-0 h-0.5 bg-yellow group-hover:w-3 transition-all"
                     />
                     {link.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -213,7 +219,7 @@ export function Footer() {
                   whileHover={{ x: isRTL ? -8 : 8 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className={`text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
@@ -221,7 +227,7 @@ export function Footer() {
                       className="w-0 h-0.5 bg-yellow group-hover:w-3 transition-all"
                     />
                     {link.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -237,7 +243,7 @@ export function Footer() {
                   whileHover={{ x: isRTL ? -8 : 8 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a
+                  <Link
                     href={link.href}
                     className={`text-white/70 hover:text-yellow transition-colors text-sm inline-flex items-center gap-2 group ${isRTL ? "flex-row-reverse" : ""}`}
                   >
@@ -245,7 +251,7 @@ export function Footer() {
                       className="w-0 h-0.5 bg-yellow group-hover:w-3 transition-all"
                     />
                     {link.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -320,15 +326,19 @@ export function Footer() {
             © {new Date().getFullYear()} Language Treats. {t("footer.rights")}
           </p>
           <div className={`flex gap-6 ${isRTL ? "flex-row-reverse" : ""}`}>
-            {[t("footer.privacy"), t("footer.terms"), t("footer.cookies")].map((text, index) => (
-              <motion.a 
-                key={index}
-                href="#" 
-                className="text-white/50 hover:text-yellow text-sm transition-colors"
-                whileHover={{ y: -2 }}
-              >
-                {text}
-              </motion.a>
+            {[
+              { text: t("footer.privacy"), href: "/privacy" },
+              { text: t("footer.terms"), href: "/terms" },
+              { text: t("footer.cookies"), href: "/cookies" },
+            ].map((item, index) => (
+              <motion.div key={index} whileHover={{ y: -2 }}>
+                <Link 
+                  href={item.href} 
+                  className="text-white/50 hover:text-yellow text-sm transition-colors"
+                >
+                  {item.text}
+                </Link>
+              </motion.div>
             ))}
           </div>
         </motion.div>

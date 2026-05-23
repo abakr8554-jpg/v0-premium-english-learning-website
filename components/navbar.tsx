@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { Menu, X, Globe, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
@@ -21,10 +22,10 @@ export function Navbar() {
   }, [])
 
   const navItems = [
-    { key: "nav.home", href: "#home" },
-    { key: "nav.courses", href: "#courses" },
-    { key: "nav.blog", href: "#blog" },
-    { key: "nav.contact", href: "#contact" },
+    { key: "nav.home", href: "/" },
+    { key: "nav.courses", href: "/courses" },
+    { key: "nav.blog", href: "/blog" },
+    { key: "nav.contact", href: "/contact" },
   ]
 
   return (
@@ -43,42 +44,48 @@ export function Navbar() {
           scrolled ? "h-14 md:h-16" : "h-16 md:h-20"
         }`}>
           {/* Logo */}
-          <motion.a 
-            href="#home" 
-            className="flex items-center gap-2 group"
+          <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <motion.img 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile-cover-PJMN1FpcIL7o4NjWk9qNTwg6DWbQTV.jpg" 
-              alt="Language Treats Logo" 
-              className={`rounded-full object-cover transition-all duration-300 ring-2 ring-transparent group-hover:ring-yellow ${
-                scrolled ? "w-8 h-8 md:w-10 md:h-10" : "w-10 h-10 md:w-12 md:h-12"
-              }`}
-              whileHover={{ rotate: 10 }}
-            />
-            <span className={`font-bold text-purple transition-all duration-300 ${
-              scrolled ? "text-base md:text-lg" : "text-lg md:text-xl"
-            }`}>
-              Language Treats
-            </span>
-          </motion.a>
+            <Link 
+              href="/" 
+              className="flex items-center gap-2 group"
+            >
+              <motion.img 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile-cover-PJMN1FpcIL7o4NjWk9qNTwg6DWbQTV.jpg" 
+                alt="Language Treats Logo" 
+                className={`rounded-full object-cover transition-all duration-300 ring-2 ring-transparent group-hover:ring-yellow ${
+                  scrolled ? "w-8 h-8 md:w-10 md:h-10" : "w-10 h-10 md:w-12 md:h-12"
+                }`}
+                whileHover={{ rotate: 10 }}
+              />
+              <span className={`font-bold text-purple transition-all duration-300 ${
+                scrolled ? "text-base md:text-lg" : "text-lg md:text-xl"
+              }`}>
+                Language Treats
+              </span>
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item, index) => (
-              <motion.a
+              <motion.div
                 key={item.key}
-                href={item.href}
-                className="relative text-foreground hover:text-purple transition-colors font-medium group"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -2 }}
               >
-                {t(item.key)}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow to-purple transition-all duration-300 group-hover:w-full" />
-              </motion.a>
+                <Link
+                  href={item.href}
+                  className="relative text-foreground hover:text-purple transition-colors font-medium group"
+                >
+                  {t(item.key)}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-yellow to-purple transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </motion.div>
             ))}
           </div>
 
@@ -134,9 +141,11 @@ export function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 font-semibold transition-all border-2 border-yellow hover:border-yellow/80 shadow-lg hover:shadow-yellow/25 magnetic-btn shine-effect">
-                {t("nav.startTrial")}
-              </Button>
+              <Link href="/contact">
+                <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 font-semibold transition-all border-2 border-yellow hover:border-yellow/80 shadow-lg hover:shadow-yellow/25 magnetic-btn shine-effect">
+                  {t("nav.startTrial")}
+                </Button>
+              </Link>
             </motion.div>
           </div>
 
@@ -183,17 +192,20 @@ export function Navbar() {
             >
               <div className="py-4 flex flex-col gap-2">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.div
                     key={item.key}
-                    href={item.href}
-                    className="text-foreground hover:text-purple hover:bg-secondary transition-all font-medium px-4 py-3 rounded-lg"
-                    onClick={() => setIsOpen(false)}
                     initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    {t(item.key)}
-                  </motion.a>
+                    <Link
+                      href={item.href}
+                      className="block text-foreground hover:text-purple hover:bg-secondary transition-all font-medium px-4 py-3 rounded-lg"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {t(item.key)}
+                    </Link>
+                  </motion.div>
                 ))}
                 
                 {/* Mobile Language Selector */}
@@ -218,9 +230,11 @@ export function Navbar() {
                   transition={{ delay: 0.3 }}
                   className="px-4 pt-2"
                 >
-                  <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 font-semibold w-full border-2 border-yellow">
-                    {t("nav.startTrial")}
-                  </Button>
+                  <Link href="/contact" onClick={() => setIsOpen(false)}>
+                    <Button className="bg-yellow text-indigo hover:bg-yellow/90 rounded-full px-6 font-semibold w-full border-2 border-yellow">
+                      {t("nav.startTrial")}
+                    </Button>
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>

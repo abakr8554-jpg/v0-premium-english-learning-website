@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef } from "react"
+import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { GraduationCap, Briefcase, Gamepad2, BookOpen, ArrowRight } from "lucide-react"
@@ -217,16 +218,18 @@ export function Courses() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Button
-                  className={`w-full rounded-full py-5 font-semibold transition-all group/btn ${
-                    course.popular
-                      ? "bg-yellow text-indigo hover:bg-yellow/90 shadow-lg hover:shadow-yellow/30"
-                      : "bg-purple text-white hover:bg-purple/90"
-                  }`}
-                >
-                  <span>{t("courses.enrollNow")}</span>
-                  <ArrowRight className={`w-4 h-4 transition-transform ${isRTL ? "mr-2 group-hover/btn:-translate-x-1 rotate-180" : "ml-2 group-hover/btn:translate-x-1"}`} />
-                </Button>
+                <Link href="/contact">
+                  <Button
+                    className={`w-full rounded-full py-5 font-semibold transition-all group/btn ${
+                      course.popular
+                        ? "bg-yellow text-indigo hover:bg-yellow/90 shadow-lg hover:shadow-yellow/30"
+                        : "bg-purple text-white hover:bg-purple/90"
+                    }`}
+                  >
+                    <span>{t("courses.enrollNow")}</span>
+                    <ArrowRight className={`w-4 h-4 transition-transform ${isRTL ? "mr-2 group-hover/btn:-translate-x-1 rotate-180" : "ml-2 group-hover/btn:translate-x-1"}`} />
+                  </Button>
+                </Link>
               </motion.div>
 
               {/* Bottom glow line */}
