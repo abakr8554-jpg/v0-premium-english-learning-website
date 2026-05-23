@@ -52,7 +52,7 @@ export function Hero() {
               <div className="relative aspect-square">
                 {/* Central Logo Bubble */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm flex items-center justify-center shadow-2xl border border-white/20">
+                  <div className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm flex items-center justify-center shadow-2xl border border-white/20 animate-pulse-glow">
                     <img 
                       src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile-cover-PJMN1FpcIL7o4NjWk9qNTwg6DWbQTV.jpg"
                       alt="Language Treats Logo"
@@ -62,27 +62,27 @@ export function Hero() {
                 </div>
 
                 {/* Orbiting Elements */}
-                <div className="absolute top-4 left-8 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-yellow/90 flex items-center justify-center shadow-lg transform rotate-12 animate-pulse">
+                <div className="absolute top-4 left-8 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-yellow/90 flex items-center justify-center shadow-lg animate-float-1">
                   <span className="text-indigo font-bold text-lg md:text-xl">A</span>
                 </div>
-                <div className="absolute top-8 right-4 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg transform -rotate-6 border border-white/30">
+                <div className="absolute top-8 right-4 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/30 animate-float-2">
                   <span className="text-white font-bold text-xl md:text-2xl">B</span>
                 </div>
-                <div className="absolute bottom-16 left-4 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-purple/80 flex items-center justify-center shadow-lg transform rotate-6">
+                <div className="absolute bottom-16 left-4 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-purple/80 flex items-center justify-center shadow-lg animate-float-3">
                   <span className="text-white font-bold text-sm md:text-lg">C</span>
                 </div>
-                <div className="absolute bottom-8 right-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/20">
+                <div className="absolute bottom-8 right-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/20 animate-float-4">
                   <Quote className="w-4 h-4 md:w-5 md:h-5 text-yellow" />
                 </div>
 
                 {/* Icon Elements */}
-                <div className="absolute top-1/4 right-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-yellow/30 to-yellow/10 backdrop-blur-sm flex items-center justify-center shadow-lg border border-yellow/30">
+                <div className="absolute top-1/4 right-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-yellow/30 to-yellow/10 backdrop-blur-sm flex items-center justify-center shadow-lg border border-yellow/30 animate-float-5">
                   <BookOpen className="w-5 h-5 md:w-6 md:h-6 text-yellow" />
                 </div>
-                <div className="absolute bottom-1/4 left-0 w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/20">
+                <div className="absolute bottom-1/4 left-0 w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/20 animate-float-6">
                   <Globe className="w-4 h-4 md:w-5 md:h-5 text-white" />
                 </div>
-                <div className="absolute bottom-4 left-1/3 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-yellow/20 backdrop-blur-sm flex items-center justify-center shadow-lg border border-yellow/30">
+                <div className="absolute bottom-4 left-1/3 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-yellow/20 backdrop-blur-sm flex items-center justify-center shadow-lg border border-yellow/30 animate-float-7">
                   <Mic className="w-3 h-3 md:w-4 md:h-4 text-yellow" />
                 </div>
               </div>
