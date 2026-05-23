@@ -1,5 +1,3 @@
-"use client"
-
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
 import { Features } from "@/components/features"
@@ -7,19 +5,14 @@ import { Tutors } from "@/components/tutors"
 import { Courses } from "@/components/courses"
 import { Testimonials } from "@/components/testimonials"
 import { Footer } from "@/components/footer"
-import { 
-  FloatingParticles, 
-  ScrollToTop, 
-  Preloader,
-} from "@/components/creative-elements"
-import { LanguageProvider } from "@/lib/language-context"
+import { FloatingParticles, ScrollToTop, Preloader } from "@/components/creative-elements"
 
 export default function Home() {
   return (
-    <LanguageProvider>
+    <>
       <Preloader />
       <FloatingParticles />
-      <main className="min-h-screen relative">
+      <main className="min-h-screen relative overflow-x-hidden">
         <Navbar />
         <Hero />
         <Features />
@@ -29,6 +22,6 @@ export default function Home() {
         <Footer />
       </main>
       <ScrollToTop />
-    </LanguageProvider>
+    </>
   )
 }

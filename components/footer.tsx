@@ -37,6 +37,8 @@ const itemVariants = {
 
 export function Footer() {
   const [email, setEmail] = useState("")
+  const [subscribing, setSubscribing] = useState(false)
+  const [subscribed, setSubscribed] = useState(false)
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const { t, isRTL } = useLanguage()
@@ -276,10 +278,31 @@ export function Footer() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button
+                  onClick={async () => {
+                    if (!email || subscribing) return
+                    setSubscribing(true)
+                    try {
+                      const res = await fetch("/api/newsletter", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email }),
+                      })
+                      if (res.ok) {
+                        setSubscribed(true)
+                        setEmail("")
+                        setTimeout(() => setSubscribed(false), 3000)
+                      }
+                    } catch (err) {
+                      console.error("[v0] Newsletter error:", err)
+                    } finally {
+                      setSubscribing(false)
+                    }
+                  }}
+                  disabled={subscribing || !email}
                   className={`bg-yellow text-indigo hover:bg-yellow/90 rounded-full font-semibold w-full shadow-lg hover:shadow-yellow/30 ${isRTL ? "flex-row-reverse" : ""}`}
                 >
                   <Send className={`w-4 h-4 ${isRTL ? "ml-2 rotate-180" : "mr-2"}`} />
-                  {t("footer.subscribe")}
+                  {subscribed ? t("footer.subscribed") : t("footer.subscribe")}
                 </Button>
               </motion.div>
             </div>
