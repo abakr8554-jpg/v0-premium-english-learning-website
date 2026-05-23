@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { Float, Text, RoundedBox, Environment, Html } from "@react-three/drei"
+import { Float, RoundedBox, Html } from "@react-three/drei"
 import * as THREE from "three"
 
 function FloatingLetter({ 
@@ -39,16 +39,14 @@ function FloatingLetter({
         >
           <meshStandardMaterial color={bgColor} />
         </RoundedBox>
-        <Text
-          position={[0, 0, 0.15]}
-          fontSize={0.4}
-          color={color}
-          font="/fonts/Inter_Bold.json"
-          anchorX="center"
-          anchorY="middle"
-        >
-          {letter}
-        </Text>
+        <Html center transform position={[0, 0, 0.15]}>
+          <div 
+            className="font-bold text-2xl select-none" 
+            style={{ color }}
+          >
+            {letter}
+          </div>
+        </Html>
       </group>
     </Float>
   )
@@ -193,7 +191,7 @@ function Scene() {
         letter="B" 
         position={[2.5, 1.2, 0.5]} 
         color="#FFFFFF" 
-        bgColor="rgba(255,255,255,0.2)"
+        bgColor="#6B5B95"
         speed={1.2}
         rotationIntensity={0.6}
         floatIntensity={1}
@@ -213,21 +211,21 @@ function Scene() {
         icon="📚" 
         position={[2.8, 0, 0.2]} 
         color="#FDC500" 
-        bgColor="rgba(67, 37, 119, 0.6)"
+        bgColor="#5B4B8A"
         speed={1.3}
       />
       <FloatingIcon 
         icon="🌍" 
         position={[-2.8, 0, 0.4]} 
         color="#FFFFFF" 
-        bgColor="rgba(255, 255, 255, 0.15)"
+        bgColor="#7B6BA0"
         speed={1.1}
       />
       <FloatingIcon 
         icon="🎤" 
         position={[0.5, -2, 0.3]} 
         color="#FDC500" 
-        bgColor="rgba(253, 197, 0, 0.2)"
+        bgColor="#8B7B50"
         speed={1.4}
         size={0.5}
       />
@@ -235,15 +233,13 @@ function Scene() {
         icon="💬" 
         position={[2, -1.5, 0.1]} 
         color="#FDC500" 
-        bgColor="rgba(255, 255, 255, 0.1)"
+        bgColor="#6B5B95"
         speed={1.6}
         size={0.55}
       />
 
       {/* Particle Field */}
       <ParticleField />
-
-      <Environment preset="city" />
     </>
   )
 }
@@ -255,6 +251,9 @@ export function Hero3DScene() {
         camera={{ position: [0, 0, 6], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
         style={{ background: 'transparent' }}
+        onCreated={({ gl }) => {
+          gl.setClearColor(0x000000, 0)
+        }}
       >
         <Scene />
       </Canvas>

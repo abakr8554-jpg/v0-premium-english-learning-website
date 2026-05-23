@@ -1,12 +1,20 @@
 "use client"
 
+import { Suspense } from "react"
 import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
-import { Sparkles } from "lucide-react"
+import { Sparkles, Loader2 } from "lucide-react"
 
 const Hero3DScene = dynamic(
   () => import("./hero-3d-scene").then((mod) => mod.Hero3DScene),
-  { ssr: false }
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full flex items-center justify-center">
+        <Loader2 className="w-12 h-12 text-yellow animate-spin" />
+      </div>
+    )
+  }
 )
 
 export function Hero() {
@@ -55,7 +63,13 @@ export function Hero() {
 
           {/* 3D Scene */}
           <div className="relative order-1 lg:order-2 h-[350px] md:h-[450px] lg:h-[500px]">
-            <Hero3DScene />
+            <Suspense fallback={
+              <div className="w-full h-full flex items-center justify-center">
+                <Loader2 className="w-12 h-12 text-yellow animate-spin" />
+              </div>
+            }>
+              <Hero3DScene />
+            </Suspense>
           </div>
         </div>
       </div>
