@@ -257,9 +257,9 @@ export function Tutors() {
               >
                 {/* Avatar */}
                 <motion.div 
-                  className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-purple to-indigo flex items-center justify-center mb-4"
-                  animate={{ rotateY: [0, 360] }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-purple to-indigo flex items-center justify-center mb-4 shadow-lg shadow-purple/30"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <span className="text-white font-bold text-3xl">{tutors[currentIndex].name.charAt(0)}</span>
                 </motion.div>
