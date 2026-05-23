@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Sparkles } from "lucide-react"
+import { BookOpen, Globe, Mic, Quote, Sparkles } from "lucide-react"
 
 export function Hero() {
   const trustLogos = ["BBC Learning", "Educational Trust", "Cambridge Partner", "IELTS Official"]
@@ -45,23 +45,46 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Hero Illustration - Using Brand Cover Image */}
+          {/* 3D Abstract Illustration */}
           <div className="relative flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
-              <img 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/LANG-TREATS-facebook-cover-final%20%281%29-33qI2ooihJu8hxfPOO4GPSjdzR5c4E.jpg"
-                alt="Language Treats - Speak, the world is closer"
-                className="w-full h-auto rounded-3xl shadow-2xl"
-                crossOrigin="anonymous"
-              />
-              {/* Floating Logo Badge */}
-              <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-16 h-16 md:w-20 md:h-20 rounded-full bg-white shadow-xl flex items-center justify-center">
-                <img 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile-cover-PJMN1FpcIL7o4NjWk9qNTwg6DWbQTV.jpg"
-                  alt="Language Treats Logo"
-                  className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
-                  crossOrigin="anonymous"
-                />
+            <div className="relative w-full max-w-xs md:max-w-sm lg:max-w-md">
+              {/* Main 3D Container */}
+              <div className="relative aspect-square">
+                {/* Central Logo Bubble */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 rounded-full bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm flex items-center justify-center shadow-2xl border border-white/20">
+                    <img 
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile-cover-PJMN1FpcIL7o4NjWk9qNTwg6DWbQTV.jpg"
+                      alt="Language Treats Logo"
+                      className="w-28 h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 rounded-full object-cover shadow-lg"
+                    />
+                  </div>
+                </div>
+
+                {/* Orbiting Elements */}
+                <div className="absolute top-4 left-8 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-yellow/90 flex items-center justify-center shadow-lg transform rotate-12 animate-pulse">
+                  <span className="text-indigo font-bold text-lg md:text-xl">A</span>
+                </div>
+                <div className="absolute top-8 right-4 w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg transform -rotate-6 border border-white/30">
+                  <span className="text-white font-bold text-xl md:text-2xl">B</span>
+                </div>
+                <div className="absolute bottom-16 left-4 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-purple/80 flex items-center justify-center shadow-lg transform rotate-6">
+                  <span className="text-white font-bold text-sm md:text-lg">C</span>
+                </div>
+                <div className="absolute bottom-8 right-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/20">
+                  <Quote className="w-4 h-4 md:w-5 md:h-5 text-yellow" />
+                </div>
+
+                {/* Icon Elements */}
+                <div className="absolute top-1/4 right-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-yellow/30 to-yellow/10 backdrop-blur-sm flex items-center justify-center shadow-lg border border-yellow/30">
+                  <BookOpen className="w-5 h-5 md:w-6 md:h-6 text-yellow" />
+                </div>
+                <div className="absolute bottom-1/4 left-0 w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm flex items-center justify-center shadow-lg border border-white/20">
+                  <Globe className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                </div>
+                <div className="absolute bottom-4 left-1/3 w-8 h-8 md:w-10 md:h-10 rounded-xl bg-yellow/20 backdrop-blur-sm flex items-center justify-center shadow-lg border border-yellow/30">
+                  <Mic className="w-3 h-3 md:w-4 md:h-4 text-yellow" />
+                </div>
               </div>
             </div>
           </div>
