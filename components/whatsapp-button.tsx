@@ -3,8 +3,8 @@
 import { motion } from "framer-motion"
 import { useLanguage } from "@/lib/language-context"
 
-// TODO: Replace with your real WhatsApp number (international format, no + or spaces)
-const WHATSAPP_NUMBER = "201000000000"
+// English Treats WhatsApp number (Egypt: +20 1060081675)
+const WHATSAPP_NUMBER = "201060081675"
 
 export function WhatsAppButton() {
   const { isRTL } = useLanguage()

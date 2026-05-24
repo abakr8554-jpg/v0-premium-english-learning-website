@@ -148,7 +148,7 @@ export function Footer() {
               {[
                 { icon: MapPin, text: isRTL ? "مباني البترول، 14 شارع عبد المنعم سند، الدور الخامس، شقة 5" : "Petroleum Buildings, 14 Abdel Moneim Sanad Street, 5th Floor, Apt 5", href: "https://www.google.com/maps/search/?api=1&query=Petroleum+Buildings+14+Abdel+Moneim+Sanad+Street" },
                 { icon: Mail, text: "hello@languagetreats.com", href: "mailto:hello@languagetreats.com" },
-                { icon: Phone, text: "+44 (0) 20 1234 5678", href: "tel:+442012345678" },
+                { icon: Phone, text: "+20 106 008 1675", href: "tel:+201060081675" },
               ].map((item, index) => (
                 <motion.a 
                   key={index}

@@ -40,7 +40,7 @@ export default function ContactPage() {
 
   const contactInfo = [
     { icon: MapPin, titleKey: "contact.address", valueKey: "contact.addressValue", color: "bg-yellow" },
-    { icon: Phone, titleKey: "contact.callUs", value: "+20 100 000 0000", color: "bg-purple" },
+    { icon: Phone, titleKey: "contact.callUs", value: "+20 106 008 1675", color: "bg-purple" },
     { icon: Mail, titleKey: "contact.emailUs", value: "hello@languagetreats.com", color: "bg-indigo" },
     { icon: Clock, titleKey: "contact.workingHours", valueKey: "contact.workingHoursValue", color: "bg-yellow-dark" },
   ]
