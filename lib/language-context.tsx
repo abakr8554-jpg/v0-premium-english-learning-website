@@ -26,7 +26,7 @@ export const translations: Translations = {
   "hero.title2": { en: "Crafting Your English Success Story,", ar: "نصنع قصة نجاحك في الإنجليزية،" },
   "hero.title3": { en: "Treat by Treat.", ar: "خطوة بخطوة." },
   "hero.description": {
-    en: "Experience personalized learning with certified native tutors, flexible hours, and a global curriculum designed for your success.",
+    en: "Experience personalized learning with certified native-like tutors, flexible hours, and a global curriculum designed for your success.",
     ar: "استمتع بتجربة تعلم شخصية مع مدرسين أصليين معتمدين، ساعات مرنة، ومنهج عالمي مصمم لنجاحك.",
   },
   "hero.exploreCourses": { en: "Explore Premium Courses", ar: "استكشف الكورسات المميزة" },
@@ -43,15 +43,15 @@ export const translations: Translations = {
     en: "We combine world-class tutors with innovative technology to deliver an unmatched learning experience.",
     ar: "نجمع بين أفضل المدرسين والتكنولوجيا المبتكرة لتقديم تجربة تعلم لا مثيل لها.",
   },
-  "features.nativeTutors": { en: "Verified Native Tutors", ar: "مدرسون أصليون معتمدون" },
+  "features.nativeTutors": { en: "Certified Native-like Tutors", ar: "مدرسون شبه أصليين معتمدون" },
   "features.nativeTutorsDesc": {
-    en: "Learn from certified native speakers from the USA & UK with years of teaching experience.",
-    ar: "تعلم من متحدثين أصليين معتمدين من أمريكا وبريطانيا بخبرة سنوات في التدريس.",
+    en: "Learn from native-like speakers certified by Global Teaching Organizations: Cambridge and London Teacher Training College.",
+    ar: "تعلم من متحدثين شبه أصليين معتمدين من منظمات التدريس العالمية: كامبريدج وكلية لندن لتدريب المعلمين.",
   },
   "features.curriculum": { en: "Global Curriculum", ar: "منهج عالمي" },
   "features.curriculumDesc": {
-    en: "CEFR-aligned and IELTS-focused curriculum designed by education experts.",
-    ar: "منهج متوافق مع CEFR ومركز على IELTS مصمم من خبراء التعليم.",
+    en: "CEFR-aligned, IELTS-focused, and CELTA-based curriculum designed by education experts.",
+    ar: "منهج متوافق مع CEFR، يركز على IELTS، ومبني على CELTA، مصمم من خبراء التعليم.",
   },
   "features.progress": { en: "Real-time Progress", ar: "متابعة مباشرة" },
   "features.progressDesc": {

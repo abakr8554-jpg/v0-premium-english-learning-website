@@ -1,7 +1,7 @@
 {
   "name": "Language Treats",
   "short_name": "LangTreats",
-  "description": "Premium English learning platform with certified native tutors",
+  "description": "Premium English learning platform with certified native-like tutors",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#432577",

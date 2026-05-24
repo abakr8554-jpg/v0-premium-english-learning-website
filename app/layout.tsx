@@ -24,13 +24,13 @@ export const metadata: Metadata = {
     template: "%s | Language Treats",
   },
   description:
-    "Experience personalized English learning with certified native tutors, flexible hours, and a global CEFR & IELTS curriculum. Start your free trial today.",
+    "Experience personalized English learning with certified native-like tutors, flexible hours, and a global CEFR & IELTS curriculum. Start your free trial today.",
   keywords: [
     "English learning",
     "IELTS preparation",
     "TOEFL preparation",
     "Business English",
-    "Native English tutors",
+    "Native-like English tutors",
     "Online English courses",
     "تعلم الإنجليزية",
     "كورسات إنجليزي",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Language Treats",
     title: "Language Treats | Crafting Your English Success Story",
     description:
-      "Experience personalized English learning with certified native tutors, flexible hours, and a global CEFR & IELTS curriculum.",
+      "Experience personalized English learning with certified native-like tutors, flexible hours, and a global CEFR & IELTS curriculum.",
     images: [
       {
         url: "/og-image.jpg",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Language Treats | Crafting Your English Success Story",
-    description: "Experience personalized English learning with certified native tutors and global curriculum.",
+    description: "Experience personalized English learning with certified native-like tutors and global curriculum.",
     images: ["/og-image.jpg"],
     creator: "@languagetreats",
   },

@@ -8,7 +8,6 @@ import { useLanguage } from "@/lib/language-context"
 
 export function Hero() {
   const { t, isRTL } = useLanguage()
-  const trustLogos = ["BBC Learning", "Educational Trust", "Cambridge Partner", "IELTS Official"]
 
   return (
     <section id="home" className="bg-gradient-to-br from-purple via-purple to-indigo relative overflow-hidden min-h-screen flex flex-col">
@@ -213,34 +212,6 @@ export function Hero() {
           </motion.div>
         </div>
       </div>
-
-      {/* Trust Bar */}
-      <motion.div 
-        className="bg-white/5 backdrop-blur-sm border-t border-white/10 relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5 }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 md:py-6">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8">
-            <span className="text-white/60 text-sm font-medium">{t("hero.featuredOn")}</span>
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10">
-              {trustLogos.map((logo, index) => (
-                <motion.span 
-                  key={index} 
-                  className="text-white/50 font-semibold text-xs md:text-base hover:text-yellow transition-colors cursor-pointer"
-                  whileHover={{ scale: 1.1, color: "#FDC500" }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.7 + index * 0.1 }}
-                >
-                  {logo}
-                </motion.span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
     </section>
   )
 }
