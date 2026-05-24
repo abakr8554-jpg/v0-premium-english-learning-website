@@ -72,38 +72,46 @@ export const translations: Translations = {
     ar: "اختر من كورساتنا المصممة بعناية لتلبية أهدافك التعليمية.",
   },
   "courses.mostPopular": { en: "Most Popular", ar: "الأكثر شعبية" },
+  "courses.comingSoon": { en: "Coming Soon", ar: "قريباً" },
   "courses.enrollNow": { en: "Enroll Now", ar: "سجل الآن" },
+  "courses.notifyMe": { en: "Notify Me", ar: "أبلغني" },
   "courses.perMonth": { en: "/month", ar: "/شهر" },
   "courses.viewAll": { en: "View All Courses", ar: "عرض كل الكورسات" },
-  "courses.ielts": { en: "IELTS Masterclass", ar: "دورة IELTS المتقدمة" },
+
+  // General Course
+  "courses.general": { en: "General Course", ar: "الكورس العام" },
+  "courses.generalSubtitle": { en: "6-Month Foundation (A2)", ar: "أساسيات 6 شهور (A2)" },
+  "courses.generalDesc": {
+    en: "A 6-month English course designed to help learners communicate confidently in everyday situations. Students develop the four skills while improving their vocabulary, grammar, and pronunciation through interactive lessons.",
+    ar: "كورس إنجليزي مدته 6 شهور مصمم لمساعدة المتعلمين على التواصل بثقة في المواقف اليومية. يطور الطلاب المهارات الأربع مع تحسين المفردات والقواعد والنطق من خلال دروس تفاعلية.",
+  },
+
+  // Speaking Programme
+  "courses.speaking": { en: "Speaking Programme", ar: "برنامج المحادثة" },
+  "courses.speakingSubtitle": { en: "Intermediate Fluency (6 Months)", ar: "طلاقة المستوى المتوسط (6 شهور)" },
+  "courses.speakingDesc": {
+    en: "A 6-month course for intermediate learners focused on building fluency and confidence in spoken English. Students improve their speaking, listening, pronunciation, and advanced vocabulary through immersive and interactive practice.",
+    ar: "كورس مدته 6 شهور لمتعلمي المستوى المتوسط يركز على بناء الطلاقة والثقة في التحدث بالإنجليزية. يحسن الطلاب مهاراتهم في التحدث والاستماع والنطق والمفردات المتقدمة من خلال ممارسة تفاعلية وغامرة.",
+  },
+
+  // Coming Soon Courses
+  "courses.speakFlex": { en: "SpeakFlex", ar: "سبيك فليكس" },
+  "courses.speakFlexSubtitle": { en: "Flexible Speaking Practice", ar: "ممارسة محادثة مرنة" },
+  "courses.speakFlexDesc": {
+    en: "Flexible speaking sessions designed to fit your schedule. Practice English conversation anytime with personalized feedback.",
+    ar: "جلسات محادثة مرنة مصممة لتناسب جدولك. مارس المحادثة الإنجليزية في أي وقت مع ملاحظات شخصية.",
+  },
+  "courses.momEnTo": { en: "Mom-en-to", ar: "موم-إن-تو" },
+  "courses.momEnToSubtitle": { en: "English for Mothers", ar: "إنجليزي للأمهات" },
+  "courses.momEnToDesc": {
+    en: "A specialized programme designed for mothers to learn English alongside their daily routine with supportive community.",
+    ar: "برنامج متخصص مصمم للأمهات لتعلم الإنجليزية جنباً إلى جنب مع روتينهن اليومي مع مجتمع داعم.",
+  },
+  "courses.ielts": { en: "IELTS Preparation", ar: "إعداد IELTS" },
+  "courses.ieltsSubtitle": { en: "Band 7.5+ Preparation", ar: "إعداد للباند 7.5+" },
   "courses.ieltsDesc": {
-    en: "Comprehensive preparation for all IELTS modules with practice tests and expert feedback.",
-    ar: "إعداد شامل لجميع أقسام IELTS مع اختبارات تجريبية وملاحظات خبراء.",
-  },
-  "courses.business": { en: "Business English Executive", ar: "إنجليزي الأعمال التنفيذي" },
-  "courses.businessDesc": {
-    en: "Master professional communication, presentations, and business writing skills.",
-    ar: "أتقن التواصل المهني والعروض التقديمية ومهارات الكتابة التجارية.",
-  },
-  "courses.kids": { en: "Kids Learning Fun", ar: "تعلم ممتع للأطفال" },
-  "courses.kidsDesc": {
-    en: "Interactive and engaging lessons designed specifically for young learners.",
-    ar: "دروس تفاعلية وممتعة مصممة خصيصًا للمتعلمين الصغار.",
-  },
-  "courses.toefl": { en: "TOEFL Intensive", ar: "دورة TOEFL المكثفة" },
-  "courses.toeflDesc": {
-    en: "Focused preparation for TOEFL iBT with strategies and full-length practice tests.",
-    ar: "إعداد مركز لـ TOEFL iBT مع استراتيجيات واختبارات تجريبية كاملة.",
-  },
-  "courses.conversation": { en: "Conversation Mastery", ar: "إتقان المحادثة" },
-  "courses.conversationDesc": {
-    en: "Build confidence and fluency through real-life conversation practice with native speakers.",
-    ar: "ابنِ الثقة والطلاقة من خلال ممارسة محادثات واقعية مع متحدثين أصليين.",
-  },
-  "courses.grammar": { en: "Grammar Excellence", ar: "تميز القواعد" },
-  "courses.grammarDesc": {
-    en: "Master English grammar from foundations to advanced structures with clear explanations.",
-    ar: "أتقن قواعد الإنجليزية من الأساسيات إلى التراكيب المتقدمة مع شرح واضح.",
+    en: "Comprehensive preparation for all IELTS modules with practice tests and expert feedback to achieve your target band score.",
+    ar: "إعداد شامل لجميع أقسام IELTS مع اختبارات تجريبية وملاحظات خبراء لتحقيق درجة الباند المستهدفة.",
   },
 
   // Tutors
