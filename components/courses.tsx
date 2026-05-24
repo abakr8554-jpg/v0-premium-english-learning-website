@@ -1,11 +1,12 @@
 "use client"
 
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { GraduationCap, MessageCircle, Zap, Heart, Award, ArrowRight, Clock } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
+import { NotifyModal } from "@/components/notify-modal"
 
 const cardVariants = {
   hidden: {
@@ -31,6 +32,13 @@ export function Courses() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const { t, isRTL } = useLanguage()
+  const [notifyOpen, setNotifyOpen] = useState(false)
+  const [selectedCourse, setSelectedCourse] = useState<{ slug: string; name: string }>({ slug: "", name: "" })
+
+  const openNotifyModal = (slug: string, name: string) => {
+    setSelectedCourse({ slug, name })
+    setNotifyOpen(true)
+  }
 
   const activeCourses = [
     {
@@ -81,18 +89,21 @@ export function Courses() {
 
   const comingSoonCourses = [
     {
+      slug: "speakflex",
       icon: Zap,
       title: t("courses.speakFlex"),
       subtitle: t("courses.speakFlexSubtitle"),
       description: t("courses.speakFlexDesc"),
     },
     {
+      slug: "mom-en-to",
       icon: Heart,
       title: t("courses.momEnTo"),
       subtitle: t("courses.momEnToSubtitle"),
       description: t("courses.momEnToDesc"),
     },
     {
+      slug: "ielts-prep",
       icon: Award,
       title: t("courses.ielts"),
       subtitle: t("courses.ieltsSubtitle"),
@@ -328,17 +339,16 @@ export function Courses() {
               <p className="text-muted-foreground text-sm leading-relaxed mb-5">{course.description}</p>
 
               {/* Notify Button */}
-              <Link href="/contact">
-                <Button
-                  variant="outline"
-                  className="w-full rounded-full border-2 border-purple/30 text-purple hover:bg-purple hover:text-white hover:border-purple transition-all bg-transparent"
-                >
-                  <span>{t("courses.notifyMe")}</span>
-                  <ArrowRight
-                    className={`w-4 h-4 transition-transform ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
-                  />
-                </Button>
-              </Link>
+              <Button
+                onClick={() => openNotifyModal(course.slug, course.title)}
+                variant="outline"
+                className="w-full rounded-full border-2 border-purple/30 text-purple hover:bg-purple hover:text-white hover:border-purple transition-all bg-transparent"
+              >
+                <span>{t("courses.notifyMe")}</span>
+                <ArrowRight
+                  className={`w-4 h-4 transition-transform ${isRTL ? "mr-2 rotate-180" : "ml-2"}`}
+                />
+              </Button>
 
               {/* Subtle gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-purple/0 to-yellow/0 group-hover:from-purple/5 group-hover:to-yellow/5 transition-all duration-500 pointer-events-none rounded-3xl" />
@@ -346,6 +356,13 @@ export function Courses() {
           ))}
         </div>
       </div>
+
+      <NotifyModal
+        isOpen={notifyOpen}
+        onClose={() => setNotifyOpen(false)}
+        courseSlug={selectedCourse.slug}
+        courseName={selectedCourse.name}
+      />
     </section>
   )
 }

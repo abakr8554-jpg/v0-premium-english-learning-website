@@ -3,6 +3,7 @@ import { Inter, Cairo } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { LanguageProvider } from "@/lib/language-context"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 import "./globals.css"
 
 const inter = Inter({
@@ -106,7 +107,10 @@ export default function RootLayout({
     <html lang="en" className="bg-background" suppressHydrationWarning>
       <body className={`${inter.variable} ${cairo.variable} font-sans antialiased`}>
         <Suspense fallback={null}>
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            {children}
+            <WhatsAppButton />
+          </LanguageProvider>
         </Suspense>
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
