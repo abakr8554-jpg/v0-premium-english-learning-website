@@ -53,8 +53,8 @@ export function Navbar() {
               className="flex items-center gap-2 group"
             >
               <motion.img 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/profile-cover-PJMN1FpcIL7o4NjWk9qNTwg6DWbQTV.jpg" 
-                alt="Language Treats Logo" 
+                src="/logo.png" 
+                alt="English Treats Logo" 
                 className={`rounded-full object-cover transition-all duration-300 ring-2 ring-transparent group-hover:ring-yellow ${
                   scrolled ? "w-8 h-8 md:w-10 md:h-10" : "w-10 h-10 md:w-12 md:h-12"
                 }`}
@@ -63,7 +63,7 @@ export function Navbar() {
               <span className={`font-bold text-purple transition-all duration-300 ${
                 scrolled ? "text-base md:text-lg" : "text-lg md:text-xl"
               }`}>
-                Language Treats
+                English Treats
               </span>
             </Link>
           </motion.div>

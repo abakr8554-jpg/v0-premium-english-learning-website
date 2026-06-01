@@ -1,6 +1,6 @@
 {
-  "name": "Language Treats",
-  "short_name": "LangTreats",
+  "name": "English Treats",
+  "short_name": "English Treats",
   "description": "Premium English learning platform with certified native-like tutors",
   "start_url": "/",
   "display": "standalone",
@@ -9,19 +9,22 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon-light-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/apple-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

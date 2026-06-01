@@ -16,8 +16,8 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 )
 
 const socials = [
-  { icon: Facebook, href: "https://www.facebook.com/EngliMoneimSanadationalCenter", label: "Facebook" },
-  { icon: Instagram, href: "https://www.instagram.com/english__treats?igsh=dTJnM2ExbHZ6NHJw", label: "Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/languagetreats", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/languagetreats?igsh=cng0NzB4NWJwYjZ3", label: "Instagram" },
   { icon: TikTokIcon, href: "https://www.tiktok.com/@english_treats?_r=1&_t=ZS-96bNqmfNzJi", label: "TikTok" },
 ]
 
