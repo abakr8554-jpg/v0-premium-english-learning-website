@@ -3,7 +3,7 @@ import { createServiceClient } from "@/lib/supabase/server"
 import { AdminLogin } from "@/components/admin/admin-login"
 import { AdminDashboard } from "@/components/admin/admin-dashboard"
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-static";
 
 export default async function AdminPage() {
   const cookieStore = await cookies()
