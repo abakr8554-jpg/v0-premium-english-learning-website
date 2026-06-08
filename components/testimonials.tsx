@@ -45,23 +45,28 @@ export function Testimonials() {
 
   const individualSuccess = [
     {
-      name: isRTL ? "ديفيد تشن" : "David Chen",
-      title: isRTL ? "نجاح IELTS" : "IELTS Success",
-      before: "6.0",
-      after: "8.0",
-      quote: isRTL 
-        ? "النهج المنظم والتغذية الراجعة الشخصية ساعدتني على تجاوز درجتي المستهدفة. الآن أدرس في أكسفورد!"
-        : "The structured approach and personalized feedback helped me exceed my target score. Now studying at Oxford!",
-      badge: isRTL ? "معتمد باند 8.0" : "Band 8.0 Certified",
+      name: isRTL ? "شادية ح. حسن" : "Shadia H. Hassan",
+      title: isRTL ? "قصة نجاح" : "Success Story",
+      quote: isRTL
+        ? "هم ممتازين، وعملهم مختلف وفعًّال جدًا. نجحوا في إحداث فرق حقيقي في رحلتي التعليمية. سأستمر معهم بكل تأكيد. ✨"
+        : "They are excellent, and their work is really different and special. They truly managed to make a difference. I will definitely continue with you. ✨",
+      badge: isRTL ? "مراجعة" : "Review",
     },
     {
-      name: isRTL ? "صوفيا مارتينيز" : "Sofia Martinez",
-      title: isRTL ? "تحول مهني" : "Career Transformation",
-      achievement: isRTL ? "حصلت على وظيفة في لندن" : "Landed corporate job in London",
+      name: isRTL ? "سماح أبو السنون" : "Samah Abu Elsnoon",
+      title: isRTL ? "قصة نجاح" : "Success Story",
       quote: isRTL
-        ? "دورة إنجليزي الأعمال أعطتني الثقة والمهارات للتميز في مقابلاتي. وظيفة أحلامي أصبحت واقعاً."
-        : "The Business English course gave me the confidence and skills to ace my interviews. My dream job is now my reality.",
-      badge: isRTL ? "المستوى التنفيذي" : "Executive Level",
+        ? "أكثر من رائع! تجربة لا تُنسى معكم. أنا سعيدة جدًا بكل لحظة قضيتها في التعلم معكم. ❤️"
+        : "More than wonderful. I'm happy to be with you ❤️",
+      badge: isRTL ? "مراجعة" : "Review",
+    },
+    {
+      name: isRTL ? "شيماء صلاح" : "Shaymaa Salah",
+      title: isRTL ? "قصة نجاح" : "Success Story",
+      quote: isRTL
+        ? "رغم أنها جلستي الأولى فقط، إلا أنني سعيدة جدًا بالنتائج التي فاقت توقعاتي. معلمة احترافية جدًا وملهمة. ❤️"
+        : "Still my very first session but I am so happy with the result that was over my expectations. She is very professional ❤️",
+      badge: isRTL ? "مراجعة" : "Review",
     },
   ]
 
