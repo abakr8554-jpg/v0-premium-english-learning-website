@@ -41,13 +41,13 @@ export function Features() {
       icon: Globe,
       title: t("features.curriculum"),
       description: t("features.curriculumDesc"),
-      accent: isRTL ? "محتوى معتمد من كامبريدج" : "Cambridge-aligned content",
+      accent: isRTL ? "محتوى متوافق مع معايير Cambridge" : "Cambridge-aligned content",
     },
     {
       icon: BarChart3,
       title: t("features.progress"),
       description: t("features.progressDesc"),
-      accent: isRTL ? "تحليلات بالذكاء الاصطناعي" : "AI-powered insights",
+      accent: isRTL ? "رؤى ذكية لتطورك اللغوي" : "AI-powered insights",
     },
     {
       icon: MessageCircle,
@@ -93,7 +93,7 @@ export function Features() {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            {isRTL ? "لماذا نحن" : "Why Choose Us"}
+            {isRTL ? "ليه تختارنا؟" : "Why Choose Us"}
           </motion.span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple text-balance">
             {t("features.title")} <span className="text-yellow">{t("features.titleHighlight")}</span>
