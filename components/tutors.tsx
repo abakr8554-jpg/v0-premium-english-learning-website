@@ -6,26 +6,6 @@ import { ChevronLeft, ChevronRight, Star, Award, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/lib/language-context"
 
-const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 60,
-    rotateX: -10,
-    scale: 0.9
-  },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    scale: 1,
-    transition: {
-      delay: i * 0.12,
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94]
-    }
-  })
-}
-
 export function Tutors() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const ref = useRef(null)
@@ -34,54 +14,79 @@ export function Tutors() {
 
   const tutors = [
     {
-      name: isRTL ? "سارة ج." : "Sarah J.",
-      credential: isRTL ? "ماجستير لغويات تطبيقية" : "M.A. Applied Linguistics",
-      location: isRTL ? "المملكة المتحدة" : "United Kingdom",
-      specialty: isRTL ? "الكتابة الأكاديمية و IELTS" : "Academic Writing & IELTS",
-      experience: isRTL ? "12+ سنة خبرة" : "12+ years teaching",
+      name: isRTL ? "محمد أيمن" : "Mr. Mohamed Ayman",
+      credential: isRTL
+        ? "مدرّس في British Council · كلية اللغات والترجمة، قسم اللغة الإنجليزية"
+        : "Instructor at the British Council · Faculty of Foreign Languages and Translation, English Department",
+      location: isRTL ? "كلية اللغات والترجمة، قسم اللغة الإنجليزية" : "Faculty of Foreign Languages and Translation, English Department",
+      specialty: isRTL ? "عام، محادثة، ESP" : "General, Speaking and ESP",
+      experience: isRTL ? "3 سنوات من الخبرة في التدريس" : "3 years of Teaching experience",
       rating: 4.9,
-      reviews: 847,
-      bio: isRTL 
-        ? "متخصصة في مساعدة الطلاب لتحقيق باند 7.5+ في كتابة IELTS بمنهجيات مثبتة."
-        : "Specialized in helping students achieve band 7.5+ in IELTS writing with proven methodologies.",
+      reviews: 100,
+      bio: isRTL
+        ? "TEFL OFQUAL معتمد وCELTA معتمد. درّس أكثر من 100 طالب في برامج General وSpeaking وESP."
+        : "TEFL OFQUAL Certified instructor. CELTA certified instructor. Taught above 100 students in General, Speaking and ESP.",
     },
     {
-      name: isRTL ? "مايكل ب." : "Michael B.",
-      credential: isRTL ? "بكالوريوس تعليم، ممتحن IELTS" : "B.S. Education, IELTS Examiner",
-      location: isRTL ? "الولايات المتحدة" : "United States",
-      specialty: isRTL ? "إنجليزي الأعمال والعروض" : "Business English & Presentations",
-      experience: isRTL ? "8+ سنوات خبرة" : "8+ years teaching",
+      name: isRTL ? "رضوى علي" : "Mrs. Radwa Ali",
+      credential: isRTL
+        ? "كلية اللغات والترجمة، قسم اللغة الإنجليزية · باحثة لغويات"
+        : "Faculty of Foreign Languages and Translation, English Department · Linguistics Researcher",
+      location: isRTL ? "كلية اللغات والترجمة، قسم اللغة الإنجليزية" : "Faculty of Foreign Languages and Translation, English Department",
+      specialty: isRTL ? "عام، محادثة، ESP" : "General, Speaking and ESP",
+      experience: isRTL ? "6 سنوات من الخبرة في التدريس" : "6 years of Teaching experience",
       rating: 4.95,
-      reviews: 623,
+      reviews: 2000,
       bio: isRTL
-        ? "مدرب شركات سابق في شركات Fortune 500. خبير في مهارات التواصل التنفيذي."
-        : "Former corporate trainer at Fortune 500 companies. Expert in executive communication skills.",
+        ? "باحثة لغويات ومدرّبة مدرسين. TEFL OFQUAL معتمد وCELTA معتمد. درّبت أكثر من 2000 طالب في برامج General وSpeaking وESP."
+        : "TEFL OFQUAL Certified instructor. CELTA certified instructor. Teacher Trainer. Taught above 2000 students in General, Speaking and ESP.",
     },
     {
-      name: isRTL ? "آنيا ر." : "Anya R.",
-      credential: isRTL ? "أخصائية إعداد TOEFL معتمدة" : "Certified TOEFL Prep Specialist",
-      location: isRTL ? "أستراليا" : "Australia",
-      specialty: isRTL ? "TOEFL والإعداد الجامعي" : "TOEFL & University Prep",
-      experience: isRTL ? "10+ سنوات خبرة" : "10+ years teaching",
-      rating: 4.88,
-      reviews: 512,
+      name: isRTL ? "خلود سلامة" : "Ms. Kholoud Salama",
+      credential: isRTL
+        ? "كلية التربية، قسم اللغة الإنجليزية · مدرّبة مدرسين"
+        : "Faculty of Education, English Department · Teacher trainer",
+      location: isRTL ? "كلية التربية، قسم اللغة الإنجليزية" : "Faculty of Education, English Department",
+      specialty: isRTL ? "برنامج عام ومحادثة" : "General and speaking program",
+      experience: isRTL ? "5 سنوات ونصف من الخبرة في التدريس" : "5 years and a half of teaching experience",
+      rating: 4.9,
+      reviews: 300,
       bio: isRTL
-        ? "ساعدت 500+ طالب في القبول بأفضل الجامعات بدرجات TOEFL محسنة."
-        : "Helped 500+ students gain admission to top universities with improved TOEFL scores.",
+        ? "CELTA معتمدة ومدرّبة مدرسين. درّست أكثر من 300 طالب في برامج General وSpeaking."
+        : "CELTA certified instructor. Teacher trainer. Taught above 300 students in General and speaking program.",
     },
     {
-      name: isRTL ? "جيمس ك." : "James K.",
-      credential: isRTL ? "معتمد CELTA و DELTA" : "CELTA & DELTA Certified",
-      location: isRTL ? "كندا" : "Canada",
-      specialty: isRTL ? "الإنجليزية المحادثية" : "Conversational English",
-      experience: isRTL ? "15+ سنة خبرة" : "15+ years teaching",
-      rating: 4.92,
-      reviews: 934,
+      name: isRTL ? "رنا مصطفى" : "Ms. Rana Mustaffa",
+      credential: isRTL ? "كلية الآداب، قسم اللغة الإنجليزية" : "Faculty of Arta, English Department",
+      location: isRTL ? "كلية الآداب، قسم اللغة الإنجليزية" : "Faculty of Arta, English Department",
+      specialty: isRTL ? "برنامج عام ومحادثة" : "General and speaking program",
+      experience: isRTL ? "سنتان من الخبرة في التدريس" : "2 years of teaching experience",
+      rating: 4.8,
+      reviews: 100,
       bio: isRTL
-        ? "متخصص في جعل الإنجليزية ممتعة وسهلة. يركز على بناء الثقة في المحادثة."
-        : "Master of making English fun and accessible. Specializes in building confidence in speaking.",
+        ? "CELTA معتمدة. درّست أكثر من 100 طالب في برامج General وSpeaking."
+        : "Celta Certified instructor. Taught above 100 students in General and speaking program.",
     },
   ]
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+      rotateX: 15,
+      scale: 0.96,
+    },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      scale: 1,
+      transition: {
+        delay: 0.1 * index,
+        duration: 0.6,
+      },
+    }),
+  }
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % tutors.length)
