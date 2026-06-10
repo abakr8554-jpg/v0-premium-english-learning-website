@@ -23,19 +23,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 })
     }
 
-    const supabase = createServiceClient()
-    const { error: dbError } = await supabase.from("contact_messages").insert({
-      first_name: finalFirstName,
-      last_name: finalLastName || null,
-      email,
-      phone: phone || null,
-      subject: subject || null,
-      message,
-    })
+    try {
+      const supabase = createServiceClient()
+      const { error: dbError } = await supabase.from("contact_messages").insert({
+        first_name: finalFirstName,
+        last_name: finalLastName || null,
+        email,
+        phone: phone || null,
+        subject: subject || null,
+        message,
+      })
 
-    if (dbError) {
-      console.log("[v0] Contact DB error:", dbError)
-      return NextResponse.json({ error: "Failed to save message" }, { status: 500 })
+      if (dbError) {
+        console.log("[v0] Contact DB error:", dbError)
+        // Don't return error here - continue to try sending emails
+      }
+    } catch (dbError) {
+      console.log("[v0] Contact DB connection error:", dbError)
+      // Continue to send emails even if DB fails
     }
 
     const adminBody = `
@@ -58,16 +63,16 @@ export async function POST(request: Request) {
 
     const userBody = `
       <p>Hi ${finalFirstName},</p>
-      <p>Thank you for reaching out to English Treats! We've received your message and our team will get back to you within 24 hours.</p>
+      <p>Thank you for reaching out to Language Treats! We've received your message and our team will get back to you within 24 hours.</p>
       <div style="margin-top: 16px; padding: 16px; background: #f9f9f9; border-radius: 8px;">
         <strong>Your message:</strong>
         <p style="margin: 8px 0 0 0; white-space: pre-wrap; color: #666;">${message}</p>
       </div>
-      <p style="margin-top: 24px;">Best regards,<br/>The English Treats Team</p>
+      <p style="margin-top: 24px;">Best regards,<br/>The Language Treats Team</p>
     `
     await sendUserConfirmation(
       email,
-      "We received your message - English Treats",
+      "We received your message - Language Treats",
       emailLayout("Thank you for contacting us!", userBody)
     )
 
