@@ -7,21 +7,23 @@ const contactEmail = process.env.CONTACT_EMAIL
 
 const resend = resendApiKey ? new Resend(resendApiKey) : null
 
-const FROM_EMAIL = "English Treats <onboarding@resend.dev>"
+const FROM_EMAIL = process.env.FROM_EMAIL || "English Treats <onboarding@resend.dev>"
 
 async function logEmailFallback(to: string, subject: string, html: string) {
   try {
     const logDir = path.join(process.cwd(), ".logs")
     await fs.mkdir(logDir, { recursive: true })
-    const timestamp = new Date().toISOString().replace(/[:.]/g, "-")
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-").split("Z")[0]
     const logFile = path.join(logDir, `email-${timestamp}.json`)
     await fs.writeFile(
       logFile,
-      JSON.stringify({ to, subject, html, timestamp: new Date().toISOString() }, null, 2)
+      JSON.stringify({ to, subject, html, timestamp: new Date().toISOString(), from: FROM_EMAIL }, null, 2)
     )
     console.log(`[v0] Email logged to: ${logFile}`)
+    return true
   } catch (err) {
     console.log("[v0] Fallback logging error:", err)
+    return false
   }
 }
 

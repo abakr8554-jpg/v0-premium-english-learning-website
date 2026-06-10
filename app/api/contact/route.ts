@@ -2,6 +2,17 @@ import { NextResponse } from "next/server"
 import { createServiceClient } from "@/lib/supabase/server"
 import { sendAdminNotification, sendUserConfirmation, emailLayout } from "@/lib/email"
 
+function escapeHtml(text: string): string {
+  const map: { [key: string]: string } = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  }
+  return text.replace(/[&<>"']/g, (char) => map[char])
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
@@ -46,14 +57,14 @@ export async function POST(request: Request) {
     const adminBody = `
       <p>You have a new contact message from your website.</p>
       <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
-        <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${finalFirstName} ${finalLastName}</td></tr>
-        <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${email}">${email}</a></td></tr>
-        ${phone ? `<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Phone:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${phone}</td></tr>` : ""}
-        ${subject ? `<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Subject:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${subject}</td></tr>` : ""}
+        <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Name:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(finalFirstName)} ${escapeHtml(finalLastName)}</td></tr>
+        <tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+        ${phone ? `<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Phone:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(phone)}</td></tr>` : ""}
+        ${subject ? `<tr><td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>Subject:</strong></td><td style="padding: 8px; border-bottom: 1px solid #eee;">${escapeHtml(subject)}</td></tr>` : ""}
       </table>
       <div style="margin-top: 16px; padding: 16px; background: #f9f9f9; border-radius: 8px;">
         <strong>Message:</strong>
-        <p style="margin: 8px 0 0 0; white-space: pre-wrap;">${message}</p>
+        <p style="margin: 8px 0 0 0; white-space: pre-wrap;">${escapeHtml(message)}</p>
       </div>
     `
     await sendAdminNotification(
@@ -62,11 +73,11 @@ export async function POST(request: Request) {
     )
 
     const userBody = `
-      <p>Hi ${finalFirstName},</p>
+      <p>Hi ${escapeHtml(finalFirstName)},</p>
       <p>Thank you for reaching out to Language Treats! We've received your message and our team will get back to you within 24 hours.</p>
       <div style="margin-top: 16px; padding: 16px; background: #f9f9f9; border-radius: 8px;">
         <strong>Your message:</strong>
-        <p style="margin: 8px 0 0 0; white-space: pre-wrap; color: #666;">${message}</p>
+        <p style="margin: 8px 0 0 0; white-space: pre-wrap; color: #666;">${escapeHtml(message)}</p>
       </div>
       <p style="margin-top: 24px;">Best regards,<br/>The Language Treats Team</p>
     `
