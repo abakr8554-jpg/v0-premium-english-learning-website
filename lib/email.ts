@@ -1,4 +1,6 @@
 import { Resend } from "resend"
+import { promises as fs } from "fs"
+import path from "path"
 
 const resendApiKey = process.env.RESEND_API_KEY
 const contactEmail = process.env.CONTACT_EMAIL
@@ -7,10 +9,28 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null
 
 const FROM_EMAIL = "English Treats <onboarding@resend.dev>"
 
+async function logEmailFallback(to: string, subject: string, html: string) {
+  try {
+    const logDir = path.join(process.cwd(), ".logs")
+    await fs.mkdir(logDir, { recursive: true })
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-")
+    const logFile = path.join(logDir, `email-${timestamp}.json`)
+    await fs.writeFile(
+      logFile,
+      JSON.stringify({ to, subject, html, timestamp: new Date().toISOString() }, null, 2)
+    )
+    console.log(`[v0] Email logged to: ${logFile}`)
+  } catch (err) {
+    console.log("[v0] Fallback logging error:", err)
+  }
+}
+
 export async function sendAdminNotification(subject: string, html: string) {
   if (!resend || !contactEmail) {
     console.log("[v0] Email skipped - RESEND_API_KEY or CONTACT_EMAIL missing")
-    return { skipped: true }
+    console.log("[v0] Logging email to file instead...")
+    await logEmailFallback(contactEmail || "admin@localhost", subject, html)
+    return { skipped: true, logged: true }
   }
 
   try {
@@ -20,17 +40,22 @@ export async function sendAdminNotification(subject: string, html: string) {
       subject,
       html,
     })
+    console.log("[v0] Admin email sent successfully")
     return { success: true, result }
   } catch (error) {
     console.log("[v0] Admin email error:", error)
-    return { error }
+    console.log("[v0] Logging email to file as fallback...")
+    await logEmailFallback(contactEmail, subject, html)
+    return { error, logged: true }
   }
 }
 
 export async function sendUserConfirmation(to: string, subject: string, html: string) {
   if (!resend) {
     console.log("[v0] User email skipped - RESEND_API_KEY missing")
-    return { skipped: true }
+    console.log("[v0] Logging email to file instead...")
+    await logEmailFallback(to, subject, html)
+    return { skipped: true, logged: true }
   }
 
   try {
@@ -40,10 +65,13 @@ export async function sendUserConfirmation(to: string, subject: string, html: st
       subject,
       html,
     })
+    console.log("[v0] User confirmation email sent successfully")
     return { success: true, result }
   } catch (error) {
     console.log("[v0] User email error:", error)
-    return { error }
+    console.log("[v0] Logging email to file as fallback...")
+    await logEmailFallback(to, subject, html)
+    return { error, logged: true }
   }
 }
 
