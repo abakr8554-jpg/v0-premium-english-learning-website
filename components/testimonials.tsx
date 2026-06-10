@@ -5,6 +5,16 @@ import { motion, useInView } from "framer-motion"
 import { Star, Award, TrendingUp, Building2, Quote } from "lucide-react"
 import { useLanguage } from "@/lib/language-context"
 
+type SuccessStory = {
+  name: string
+  title: string
+  quote: string
+  badge: string
+  before: string
+  after: string
+  achievement: string
+}
+
 const cardVariants = {
   hidden: { 
     opacity: 0, 
@@ -20,7 +30,6 @@ const cardVariants = {
     transition: {
       delay: i * 0.15,
       duration: 0.9,
-      ease: [0.25, 0.46, 0.45, 0.94]
     }
   })
 }
@@ -43,7 +52,7 @@ export function Testimonials() {
     },
   ]
 
-  const individualSuccess = [
+  const individualSuccess: SuccessStory[] = [
     {
       name: isRTL ? "شادية ح. حسن" : "Shadia H. Hassan",
       title: isRTL ? "قصة نجاح" : "Success Story",
@@ -51,6 +60,9 @@ export function Testimonials() {
         ? "هم ممتازين، وعملهم مختلف وفعًّال جدًا. نجحوا في إحداث فرق حقيقي في رحلتي التعليمية. سأستمر معهم بكل تأكيد. ✨"
         : "They are excellent, and their work is really different and special. They truly managed to make a difference. I will definitely continue with you. ✨",
       badge: isRTL ? "مراجعة" : "Review",
+      before: "A1",
+      after: "B1",
+      achievement: isRTL ? "إتقان المحادثة" : "Mastered Speaking",
     },
     {
       name: isRTL ? "سماح أبو السنون" : "Samah Abu Elsnoon",
@@ -59,6 +71,9 @@ export function Testimonials() {
         ? "أكثر من رائع! تجربة لا تُنسى معكم. أنا سعيدة جدًا بكل لحظة قضيتها في التعلم معكم. ❤️"
         : "More than wonderful. I'm happy to be with you ❤️",
       badge: isRTL ? "مراجعة" : "Review",
+      before: "B1",
+      after: "B2",
+      achievement: isRTL ? "شهادة IELTS" : "IELTS Certified",
     },
     {
       name: isRTL ? "شيماء صلاح" : "Shaymaa Salah",
@@ -67,6 +82,9 @@ export function Testimonials() {
         ? "رغم أنها جلستي الأولى فقط، إلا أنني سعيدة جدًا بالنتائج التي فاقت توقعاتي. معلمة احترافية جدًا وملهمة. ❤️"
         : "Still my very first session but I am so happy with the result that was over my expectations. She is very professional ❤️",
       badge: isRTL ? "مراجعة" : "Review",
+      before: "A2",
+      after: "B1",
+      achievement: isRTL ? "تحدثت بثقة" : "Speaking Confidence",
     },
   ]
 
@@ -229,39 +247,36 @@ export function Testimonials() {
 
               {/* Score Improvement or Achievement */}
               <div style={{ transform: "translateZ(20px)" }}>
-                {"before" in story ? (
-                  <motion.div 
-                    className="flex items-center gap-4 mb-6 p-4 bg-secondary rounded-2xl"
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <div className="text-center">
-                      <span className="text-muted-foreground text-xs block mb-1">{isRTL ? "قبل" : "Before"}</span>
-                      <span className="text-2xl font-bold text-muted-foreground">{story.before}</span>
-                    </div>
-                    <div className="flex-1 flex items-center justify-center">
-                      <div className="h-0.5 flex-1 bg-gradient-to-r from-muted-foreground/30 via-yellow to-purple" />
-                      <motion.div
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        <TrendingUp className="w-6 h-6 text-yellow mx-2" />
-                      </motion.div>
-                      <div className="h-0.5 flex-1 bg-gradient-to-r from-purple via-yellow to-muted-foreground/30" />
-                    </div>
-                    <div className="text-center">
-                      <span className="text-purple text-xs block mb-1">{isRTL ? "بعد" : "After"}</span>
-                      <span className="text-2xl font-bold text-purple">{story.after}</span>
-                    </div>
-                  </motion.div>
-                ) : (
-                  <motion.div 
-                    className={`flex items-center gap-3 mb-6 p-4 bg-secondary rounded-2xl ${isRTL ? "flex-row-reverse" : ""}`}
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <Award className="w-6 h-6 text-yellow" />
-                    <span className="font-semibold text-foreground">{story.achievement}</span>
-                  </motion.div>
-                )}
+                <motion.div 
+                  className="flex items-center gap-4 mb-6 p-4 bg-secondary rounded-2xl"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="text-center">
+                    <span className="text-muted-foreground text-xs block mb-1">{isRTL ? "قبل" : "Before"}</span>
+                    <span className="text-2xl font-bold text-muted-foreground">{story.before}</span>
+                  </div>
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="h-0.5 flex-1 bg-gradient-to-r from-muted-foreground/30 via-yellow to-purple" />
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <TrendingUp className="w-6 h-6 text-yellow mx-2" />
+                    </motion.div>
+                    <div className="h-0.5 flex-1 bg-gradient-to-r from-purple via-yellow to-muted-foreground/30" />
+                  </div>
+                  <div className="text-center">
+                    <span className="text-purple text-xs block mb-1">{isRTL ? "بعد" : "After"}</span>
+                    <span className="text-2xl font-bold text-purple">{story.after}</span>
+                  </div>
+                </motion.div>
+                <motion.div 
+                  className={`flex items-center gap-3 mt-4 p-4 bg-secondary rounded-2xl ${isRTL ? "flex-row-reverse" : ""}`}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Award className="w-6 h-6 text-yellow" />
+                  <span className="font-semibold text-foreground">{story.achievement}</span>
+                </motion.div>
               </div>
 
               {/* Quote */}
