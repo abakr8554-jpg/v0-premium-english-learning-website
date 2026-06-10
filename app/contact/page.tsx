@@ -24,16 +24,25 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       })
       if (res.ok) {
         setStatus("success")
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
         setTimeout(() => setStatus("idle"), 5000)
       } else {
+        const error = await res.json()
+        console.error("Contact form error:", error)
         setStatus("error")
       }
-    } catch {
+    } catch (error) {
+      console.error("Contact form submission error:", error)
       setStatus("error")
     }
   }
@@ -190,6 +199,20 @@ export default function ContactPage() {
                 <div>
                   <p className={`font-bold text-green-900 ${isRTL ? "font-arabic" : ""}`}>{t("contact.successTitle")}</p>
                   <p className={`text-sm text-green-700 ${isRTL ? "font-arabic" : ""}`}>{t("contact.successDesc")}</p>
+                </div>
+              </motion.div>
+            )}
+
+            {status === "error" && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="mb-4 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3"
+              >
+                <CheckCircle2 className="w-5 h-5 text-red-600 flex-shrink-0" />
+                <div>
+                  <p className={`font-bold text-red-900 ${isRTL ? "font-arabic" : ""}`}>{isRTL ? "خطأ" : "Error"}</p>
+                  <p className={`text-sm text-red-700 ${isRTL ? "font-arabic" : ""}`}>{isRTL ? "حدث خطأ أثناء إرسال الرسالة. حاول مجددًا." : "Failed to send message. Please try again."}</p>
                 </div>
               </motion.div>
             )}
